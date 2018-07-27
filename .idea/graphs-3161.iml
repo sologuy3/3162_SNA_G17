@@ -7,6 +7,7 @@
         <option name="settingsModule" value="settings.py" />
         <option name="manageScript" value="manage.py" />
         <option name="environment" value="&lt;map/&gt;" />
+        <option name="doNotUseTestRunner" value="false" />
       </configuration>
     </facet>
   </component>
@@ -14,7 +15,7 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/enron_data" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.5.2 virtualenv at ~/Projects/graphs-3161/.env (1)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6.1 (C:\Users\Yohan\AppData\Local\Programs\Python\Python36-32\python.exe)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">
