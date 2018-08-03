@@ -3,7 +3,8 @@ filename:restruct_data.py
 author:mdfra8
 Assumption - I'm assuming that the folder maildir is in the same directory as this script is being run in.
 """
-import os, sys
+import os
+import sys
 
 
 class Emails:
@@ -43,7 +44,7 @@ class Emails:
         self.emp_count = len(employee_folders)          # sanity check
         for emp_folder in employee_folders:  # go through each folder (employee folders)
             self.progress += 1
-            progress = "\rCurrently parsing {} of {} employees".format(int(self.progress),self.emp_count)
+            progress = "\rCurrently parsing {} of {} employees".format(int(self.progress), self.emp_count)
             sys.stdout.write(progress)
             sys.stdout.flush()
 
@@ -62,8 +63,8 @@ class Emails:
             except FileNotFoundError:
                 yield False
 
-
-    def classify_line(self,line, prev):
+    @staticmethod
+    def classify_line(line, prev):
         check_one = line.split(':')
         key_check = check_one[0]
         ez_keys = ['To', 'Subject', 'Cc', 'Mime-Version', 'Content-Type', 'Content-Transfer-Encoding', 'Bcc',
