@@ -6,20 +6,6 @@
 Welcome to CompSci17_SNA's documentation!
 =========================================
 
-Contents:
 
-.. toctree::
-   :maxdepth: 2
 .. automodule:: parsers
    :members:
-
-
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
