@@ -7,5 +7,6 @@ Welcome to CompSci17_SNA's documentation!
 =========================================
 
 
-.. automodule:: parsers
+.. automodule:: graph
    :members:
+.. automodule:: graph.node
