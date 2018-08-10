@@ -7,5 +7,7 @@ Welcome to CompSci17_SNA's documentation!
 =========================================
 
 
-.. automodule:: parsers
-   :members:
+..  automodule:: parsers
+    :members:
+..  automodule:: graph
+    :members:
