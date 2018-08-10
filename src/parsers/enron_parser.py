@@ -1,11 +1,16 @@
 """
 filename:enron_parser.py
 author:mdfra8
+
+This file contains the EnronParser object. It iterates through the maildir folder and parses the emails.
+It then holds the emails in a dictionary, with key:value pairs for the fields that the parser has been able to identify.
+
 Assumption - I'm assuming that the folder maildir is in the same directory as this script is being run in.
+todo - Improve to allow object to be initialised with a dynamic root directory
+todo - Imrpove to not hold ALL the emails in memory, i.e. turn into generator
 """
 import os
 import sys
-import re
 
 class EnronParser:
 
@@ -13,31 +18,21 @@ class EnronParser:
         """
         Initialises the Enron Parser Object.
         """
-        file_finder = self.pathfinder()
-        self.emp_count = 0
-        self.progress = float(0)
-        self.emails = []
+        file_finder = self.pathfinder()         # initialise this generator
+        self.emp_count = 0                      # how many folders exist in the root directory
+        self.progress = float(0)                # keep track of progress through the folders
+        self.emails = []                        # all the parsed emails are stored here
 
-        for each in file_finder:
-            email = {}
+        for each in file_finder:                # iterate through each email
+            email = {}                          # this is a dictionary that will contain the parsed email
+
             if each:
-                # print(each)
-                email_file = open(each)
-                id = email_file.readline().replace('Message-ID: ','')
-                datetime = email_file.readline().replace('Date: ','')
-                from_addr = email_file.readline().replace('From: ','')
-                prev = 'from'
-                for line in email_file:
-                    line = line.replace('\t','')
+                email_file = open(each)         # open the file
+                id = email_file.readline().replace('Message-ID: ','')   # first line is always an ID
+                datetime = email_file.readline().replace('Date: ','')   # second line is always a timestamp
+                from_addr = email_file.readline().replace('From: ','')  # third line is the From address
 
-                    prev = self.classify_line(line, prev)
-                    line = line.strip('\n')
-                    if prev is not 'body':
-                        line = line.replace(prev+':','')
-                    if prev in email.keys():
-                        email[prev] = email[prev] + [line]
-                    else:
-                        email[prev] = [line]
+                # Add the header fields that we just read
                 email['id'] = id
                 email['datetime'] = datetime
                 if 'from' not in email.keys():
@@ -45,15 +40,24 @@ class EnronParser:
                 else:
                     raise("Multiple from addresss")
 
-                self.emails.append(email)
-                if 'id' in email.keys():
-                    print(email['id'])
-                if 'datetime' in email.keys():
-                    print(email['datetime'])
+                prev = 'from'                   # just in case there are multiple From Addresses
 
+                for line in email_file:         # iterate through lines in the email
+                    line = line.replace('\t','')        # strip out \t as part of data cleaning
+                    prev = self.classify_line(line, prev)      # this function classifies where this line should go
+                    line = line.strip('\n')     # data cleaning
 
-                # to_addr can be multiline, it can also not be included. need to start identifying and seperating.
-                # subject can also be multiline
+                    if prev is not 'body':      # If there is a label (like From:), remove it
+                        line = line.replace(prev+':','')
+
+                    # adds the line to the correct key:value pair in the email dictionary
+                    if prev in email.keys():
+                        email[prev] = email[prev] + [line]
+                    else:
+                        email[prev] = [line]
+
+                self.emails.append(email)       # add the current email to the list of emails.
+
 
     def pathfinder(self):
         """
@@ -90,6 +94,14 @@ class EnronParser:
 
     @staticmethod
     def classify_line(line, prev):
+        """
+        Line classifier. This looks for key field identifiers that we know about, and if the field is identified,
+        returns that field name. If not, it assumes that the line is a continuation of the previous field,
+        or it is a part of the body of the email.
+        :param line:
+        :param prev:
+        :return:
+        """
         check_one = line.split(':')
         key_check = check_one[0].capitalize()
         ez_keys = ['To', 'Subject', 'Cc', 'Mime-Version', 'Content-Type', 'Content-Transfer-Encoding', 'Bcc',
@@ -109,8 +121,9 @@ class EnronParser:
         else:
             return 'body'
 
-
     def get_emails(self):
+        """
+        returns the Emails that have been parsed.
+        :return:
+        """
         return self.emails
-
-emails = EnronParser()
