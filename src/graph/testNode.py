@@ -1,5 +1,5 @@
 import unittest
-from node import Node
+from src.graph.node import Node
 
 class NodeTest(unittest.TestCase):
     def setUp(self):
