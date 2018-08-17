@@ -11,7 +11,7 @@ class Node:
 
 
         if neighbors is not None:
-            assert isinstance(neighbors, list) , "Neighbors object is not a list"
+            assert isinstance(neighbors, set) or isinstance(neighbors,list) , "Neighbors object is not a set or list"
             self.add_neighbor(*neighbors)
 
         self.label = label
@@ -35,7 +35,7 @@ class Node:
         For internal neighbor retrieval use self.neighbors
         :return: Neighbors list
         """
-        return list(self.neighbors)
+        return self.neighbors
         pass
 
 
