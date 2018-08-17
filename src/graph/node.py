@@ -3,11 +3,14 @@ class Node:
     def __init__(self, neighbors=None, label=None, attributes=None):
 
         """
-        :param neighbors: [Node] array of this nodes neighbors
+        :param neighbors: [Node] set of this nodes neighbors
         :param label: Label for this ndoe
         :param attrs: __dict__ containing k->v attributes.
         """
-        self.neighbors = set()
+
+        # Internally stored as a python set for O(1) containment checking
+        # Do not access / modify directly
+        self._neighbors = set()
 
 
         if neighbors is not None:
@@ -26,16 +29,16 @@ class Node:
 
 
     def __str__(self):
-        return "Name: {} | Neighbors: [{}] | Attributes: {{{}}})".format(self.label, self.neighbors, self.attributes)
+        return "Name: {} | Neighbors: [{}] | Attributes: {{{}}})".format(self.label, self._neighbors, self.attributes)
 
 
     def get_neighbors(self):
         """
         External method to get neighbors list
-        For internal neighbor retrieval use self.neighbors
+        For internal neighbor retrieval use self._neighbors
         :return: Neighbors list
         """
-        return list(self.neighbors)
+        return list(self._neighbors)
         pass
 
 
@@ -48,7 +51,7 @@ class Node:
 
         for potential_neighbor in neighbors:
             assert isinstance(potential_neighbor, Node), "{} is not a node".format(potential_neighbor)
-            self.neighbors.add(potential_neighbor)
+            self._neighbors.add(potential_neighbor)
 
         # TODO: This should also update the Graph
 
@@ -60,7 +63,7 @@ class Node:
         :return: None
         """
         assert isinstance(neighbor, Node), "Neighbor {} is not a node".format(neighbor)
-        assert neighbor in self.neighbors, "{} not in neighbors set".format(neighbor)
+        assert neighbor in self._neighbors, "{} not in neighbors set".format(neighbor)
 
-        self.neighbors.remove(neighbor)
+        self._neighbors.remove(neighbor)
 
