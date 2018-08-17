@@ -43,6 +43,133 @@
 </div>
 <div class="section" id="module-graph.graph">
 <span id="graph-graph-module"></span><h2>graph.graph module<a class="headerlink" href="#module-graph.graph" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="graph.graph.Graph">
+<em class="property">class </em><code class="descclassname">graph.graph.</code><code class="descname">Graph</code><span class="sig-paren">(</span><em>name</em>, <em>modifiable=False</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="graph.graph.Graph.add_edge">
+<code class="descname">add_edge</code><span class="sig-paren">(</span><em>node1</em>, <em>node2</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.add_edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an edge directed from node1 towards node2
+:type node1: Node
+:type node2: Node
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.add_nodes">
+<code class="descname">add_nodes</code><span class="sig-paren">(</span><em>node</em>, <em>neighbors=None</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.add_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a node to the graph with specified neighbors</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.delete_edge">
+<code class="descname">delete_edge</code><span class="sig-paren">(</span><em>node1</em>, <em>node2</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.delete_edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an edge spanning from node1 to node2
+:type node1: Node
+:type node2: Node</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.delete_node">
+<code class="descname">delete_node</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.delete_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obliterate a node out of existence.
+Deletes all edges spanning towards and away from it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.get_all_edges">
+<code class="descname">get_all_edges</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.get_all_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all edges in the graph
+:return: List</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.get_all_nodes">
+<code class="descname">get_all_nodes</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.get_all_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all nodes in the graph
+:return: List</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.get_node_edges">
+<code class="descname">get_node_edges</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.get_node_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return list of edges from node
+:type node: Node
+:return: List</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.get_node_neighbors">
+<code class="descname">get_node_neighbors</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.get_node_neighbors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a nodes neighbors
+:param node: Node
+:return: set</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.get_weight">
+<code class="descname">get_weight</code><span class="sig-paren">(</span><em>node1</em>, <em>node2</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.get_weight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the weight of an edge
+:type node1: Node
+:type node2: Node
+:return: float</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.has_edge">
+<code class="descname">has_edge</code><span class="sig-paren">(</span><em>node1</em>, <em>node2</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.has_edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if an edge exists directed from node1 towards node2</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.has_node">
+<code class="descname">has_node</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.has_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns wether the node is present in the graph
+:type node: Node</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.update_edge">
+<code class="descname">update_edge</code><span class="sig-paren">(</span><em>node1</em>, <em>node2</em>, <em>new_weight</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.update_edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the value of a weight in the graph
+:type node1: Node
+:type node2: Node
+:type new_weight: float</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.update_node">
+<code class="descname">update_node</code><span class="sig-paren">(</span><em>old_node</em>, <em>new_node</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.update_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace a node with another node in its place</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-graph.node">
 <span id="graph-node-module"></span><h2>graph.node module<a class="headerlink" href="#module-graph.node" title="Permalink to this headline">¶</a></h2>
@@ -70,15 +197,68 @@
 <dt id="graph.node.Node.get_neighbors">
 <code class="descname">get_neighbors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.node.Node.get_neighbors" title="Permalink to this definition">¶</a></dt>
 <dd><p>External method to get neighbors list
-For internal neighbor retrieval use self.neighbors
+For internal neighbor retrieval use self._neighbors
 :return: Neighbors list</p>
 </dd></dl>
 
 </dd></dl>
 
 </div>
-<div class="section" id="graph-testnode-module">
-<h2>graph.testNode module<a class="headerlink" href="#graph-testnode-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-graph.testNode">
+<span id="graph-testnode-module"></span><h2>graph.testNode module<a class="headerlink" href="#module-graph.testNode" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="graph.testNode.NodeTest">
+<em class="property">class </em><code class="descclassname">graph.testNode.</code><code class="descname">NodeTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="graph.testNode.NodeTest.neighbor_already_added">
+<code class="descname">neighbor_already_added</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.neighbor_already_added" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests situations where there is an attempt to add an existing neighbor.
+The expected handling of this is that there is no change to the neighbors as a Set is being used.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.testNode.NodeTest.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call before every test case.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.testNode.NodeTest.tearDown">
+<code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call after every test case.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.testNode.NodeTest.test_add_neighbor">
+<code class="descname">test_add_neighbor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.test_add_neighbor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests adding a neighbor using the add_neighbor method.
+The expected response is that an added node is returned via the get_neighbors() method.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.testNode.NodeTest.test_add_neighbor_at_init">
+<code class="descname">test_add_neighbor_at_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.test_add_neighbor_at_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for passing a one neighbor as an argument when initializing a node.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.testNode.NodeTest.test_add_neighbors">
+<code class="descname">test_add_neighbors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.test_add_neighbors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="graph.testNode.NodeTest.test_add_neighbors_at_init">
+<code class="descname">test_add_neighbors_at_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.test_add_neighbors_at_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for passing multiple neighbors at initialising a Node.
+This includes a 500k node stress test.
+The test involves passing a large number of nodes and making sure the contents returned
+by the get_neighbors method is the same as what was passed at init.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-graph">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-graph" title="Permalink to this headline">¶</a></h2>
@@ -97,7 +277,7 @@ For internal neighbor retrieval use self.neighbors
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-graph.graph">graph.graph module</a></li>
 <li><a class="reference internal" href="#module-graph.node">graph.node module</a></li>
-<li><a class="reference internal" href="#graph-testnode-module">graph.testNode module</a></li>
+<li><a class="reference internal" href="#module-graph.testNode">graph.testNode module</a></li>
 <li><a class="reference internal" href="#module-graph">Module contents</a></li>
 </ul>
 </li>

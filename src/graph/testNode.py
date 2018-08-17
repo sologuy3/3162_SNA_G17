@@ -1,6 +1,7 @@
 import unittest
 from src.graph.node import Node
 
+
 class NodeTest(unittest.TestCase):
     def setUp(self):
         """Call before every test case."""
