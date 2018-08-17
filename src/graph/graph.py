@@ -1,4 +1,5 @@
 from src.graph.node import Node
+
 class Graph:
     def __init__(self, name, modifiable=False):
         self._graph = {}
@@ -36,7 +37,7 @@ class Graph:
         return node1, node2 in self._weights
 
 
-    def add_node(self, node, neighbors):
+    def add_nodes(self, node, neighbors=None):
 
         """
         Add a node to the graph with specified neighbors
@@ -47,7 +48,9 @@ class Graph:
 
         assert not self.has_node(node), "Node {} already exists in the graph".format(node)
         assert isinstance(neighbors, set), "Neighbors iterable is not a set"
-        self._graph[node] = neighbors
+
+        if neighbors is not None:
+            self._graph[node] = neighbors
 
     def add_edge(self, node1, node2):
 
