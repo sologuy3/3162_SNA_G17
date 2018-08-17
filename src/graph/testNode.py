@@ -34,7 +34,7 @@ class NodeTest(unittest.TestCase):
         for _ in range(5000):
             neighbor_set.add(Node())
         many_node = Node(neighbor_set)
-        self.assertEqual(many_node.get_neighbors(),neighbor_set,"Passing a large Neighbor list at Node Init fails")
+        self.assertEqual(many_node.get_neighbors(), neighbor_set,"Passing a large Neighbor list at Node Init fails")
 
         neighbor_set = set()
         for _ in range(500000):

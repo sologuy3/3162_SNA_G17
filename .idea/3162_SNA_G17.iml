@@ -5,7 +5,7 @@
       <excludeFolder url="file://$MODULE_DIR$/.maildir" />
       <excludeFolder url="file://$MODULE_DIR$/maildir" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.7.0 virtualenv at ~/Projects/3162_SNA_G17/.env" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.6.1 (C:\Users\Yohan\AppData\Local\Programs\Python\Python36-32\python.exe)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
   <component name="TemplatesService">

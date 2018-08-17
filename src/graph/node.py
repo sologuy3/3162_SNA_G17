@@ -38,8 +38,7 @@ class Node:
         For internal neighbor retrieval use self._neighbors
         :return: Neighbors list
         """
-        neighbor_as_set
-        return self.neighbors
+        return self._neighbors
 
 
 
