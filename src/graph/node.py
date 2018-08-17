@@ -36,7 +36,6 @@ class Node:
         :return: Neighbors list
         """
         return self.neighbors
-        pass
 
 
     def add_neighbor(self, *neighbors):
