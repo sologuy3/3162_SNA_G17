@@ -27,7 +27,7 @@ class EnronParser:
             email = {}                          # this is a dictionary that will contain the parsed email
 
             if each:
-                email_file = open(each)         # open the file
+                email_file = open(each, encoding="latin-1")         # open the file
                 id = email_file.readline().replace('Message-ID: ','')   # first line is always an ID
                 datetime = email_file.readline().replace('Date: ','')   # second line is always a timestamp
                 from_addr = email_file.readline().replace('From: ','')  # third line is the From address
@@ -91,7 +91,6 @@ class EnronParser:
                         print(err)
                         yield False
                 else:
-                    print(crnt_emp_folder)
                     yield crnt_emp_folder
 
     @staticmethod
