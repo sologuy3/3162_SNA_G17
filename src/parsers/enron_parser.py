@@ -9,6 +9,7 @@ Assumption - I'm assuming that the folder maildir is in the same directory as th
 todo - Improve to allow object to be initialised with a dynamic root directory
 todo - Imrpove to not hold ALL the emails in memory, i.e. turn into generator
 """
+import json
 import os
 import sys
 
@@ -128,4 +129,7 @@ class EnronParser:
         :return:
         """
         return self.emails
-EnronParser()
+
+
+    def get_email_json(self):
+        return json.dumps(self.emails)
