@@ -197,6 +197,8 @@ class NodeTest(unittest.TestCase):
         self.node_a.delete_neighbor(neighbor)
         self.assertEqual(self.node_a.get_neighbors(), set())
 
+    #todo test label
+    #todo test attributes
 
 if __name__ == "__main__":
     unittest.main()  # run all tests

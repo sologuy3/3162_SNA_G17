@@ -1,4 +1,5 @@
 import unittest
+import pprint
 
 from src.graph.node import Node
 from src.graph.graph import Graph
@@ -9,9 +10,10 @@ class BasicGraphTest(unittest.TestCase):
         self.graph_a = Graph(name="myGraph")
 
         # Simple graph with three nodes
-        self.node1 = Node()
-        self.node2 = Node()
-        self.node3 = Node()
+        self.node1 = Node(label='node1')
+        self.node2 = Node(label='node2')
+        self.node3 = Node(label='node3')
+
 
         self.graph_a.add_node(self.node1)
         self.graph_a.add_node(self.node2, neighbors={self.node1})
@@ -24,8 +26,10 @@ class BasicGraphTest(unittest.TestCase):
         """
         Tests that everything done in the setUp method works correctly.
         """
-        print(self.graph_a.get_all_edges(stringify=True))
-        print(self.graph_a.get_all_nodes(stringify=True))
+        pp = pprint.PrettyPrinter(indent=4)
+        pp.pprint(self.graph_a.get_all_edges(stringify=True))
+        pp.pprint(self.graph_a.get_all_nodes(stringify=True))
+
 
     # todo hasNode
     def test_has_node(self):

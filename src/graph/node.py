@@ -29,16 +29,25 @@ class Node:
 
 
     def __str__(self):
-        return "Name: {} | Neighbors: [{}] | Attributes: {{{}}})".format(self.label, self._neighbors, self.attributes)
+        return "Name: {} | Neighbors: [{}] | Attributes: {{{}}})".format(self.label, self.get_neighbors(stringify=True), self.attributes)
 
 
-    def get_neighbors(self):
+    def get_neighbors(self,stringify=False):
         """
         External method to get neighbors list
         For internal neighbor retrieval use self._neighbors
         :return: Neighbors list
         """
-        return self._neighbors
+        if stringify:
+            neighbor_string = ''
+            if self._neighbors:
+                for neighbor in self._neighbors:
+                    neighbor_string = neighbor_string + neighbor.label
+            return neighbor_string
+
+        else:
+            return self._neighbors
+
 
 
 
