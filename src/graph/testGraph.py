@@ -24,8 +24,8 @@ class BasicGraphTest(unittest.TestCase):
         """
         Tests that everything done in the setUp method works correctly.
         """
-        print(self.graph_a.get_all_edges())
-        print(self.graph_a.get_all_nodes())
+        print(self.graph_a.get_all_edges(stringify=True))
+        print(self.graph_a.get_all_nodes(stringify=True))
 
     # todo hasNode
     def test_has_node(self):

@@ -12,7 +12,7 @@ class Graph:
         pass
         # TODO: Graph string with node count / edge count etc
 
-    def has_node(self, node): # todo bugfix - there's something funky here 
+    def has_node(self, node):   # todo bugfix - there's something funky here
 
         """
         Returns wether the node is present in the graph
@@ -20,8 +20,7 @@ class Graph:
         """
         return node in self._graph
 
-
-    def has_edge(self, node1, node2): # todo bugfix - there's something funky here
+    def has_edge(self, node1, node2):   # todo bugfix - there's something funky here
 
         """
         Returns True if an edge exists directed from node1 towards node2
@@ -53,6 +52,7 @@ class Graph:
             self._graph[node] = neighbors
             for neighbor in neighbors:
                 self._weights[(node,neighbor)] = 0
+                node.add_neighbor(neighbor)
 
             #for neighbor in neighbors:
             #    self.update_edge(node,neighbor,0)
@@ -164,8 +164,7 @@ class Graph:
 
         return node_edges
 
-
-    def get_all_nodes(self):
+    def get_all_nodes(self,stringify=False):
         """
         Return a list of all nodes in the graph
         :return: List
@@ -174,13 +173,15 @@ class Graph:
         l = []
 
         for k, v in self._graph.items():
-
             # Each key represents a node in the graph
-            l.append(k)
+            if stringify:
+                l.append(str(k))
+            else:
+                l.append(k)
 
         return l
 
-    def get_all_edges(self):
+    def get_all_edges(self,stringify=False):
         """
         Return a list of all edges in the graph
         :return: List
@@ -189,7 +190,10 @@ class Graph:
 
         for k, v in self._weights.items():
             # k is the tuple, v is the weight
-            l.append((k[0], k[1], v))
+            if stringify:
+                l.append((str(k[0]), str(k[1]), v))
+            else:
+                l.append((k[0], k[1], v))
 
         return l
 
