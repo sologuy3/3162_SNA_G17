@@ -91,6 +91,11 @@ class NodeTest(unittest.TestCase):
                          'Neighbor list should not be updated automatically @Directed')
 
     def test_add_neighbors(self):
+        """
+        Test adding multiple neighbors to the node via add_neighbor()
+        Includes multiple stress tests and attempts adding different types of sequences.
+        :return:
+        """
         neighbor_a = Node()
         neighbor_a.add_neighbor(*[self.node_a])
         self.assertIs(neighbor_a.get_neighbors().pop(), self.node_a, "Neighbor not added")

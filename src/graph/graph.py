@@ -12,7 +12,7 @@ class Graph:
         pass
         # TODO: Graph string with node count / edge count etc
 
-    def has_node(self, node):
+    def has_node(self, node): # todo bugfix - there's something funky here 
 
         """
         Returns wether the node is present in the graph
@@ -21,7 +21,7 @@ class Graph:
         return node in self._graph
 
 
-    def has_edge(self, node1, node2):
+    def has_edge(self, node1, node2): # todo bugfix - there's something funky here
 
         """
         Returns True if an edge exists directed from node1 towards node2
@@ -37,7 +37,7 @@ class Graph:
         return node1, node2 in self._weights
 
 
-    def add_nodes(self, node, neighbors=None):
+    def add_node(self, node, neighbors=None):
 
         """
         Add a node to the graph with specified neighbors
@@ -51,6 +51,13 @@ class Graph:
         if neighbors is not None:
             assert isinstance(neighbors, set), "Neighbors iterable is not a set"
             self._graph[node] = neighbors
+            for neighbor in neighbors:
+                self._weights[(node,neighbor)] = 0
+
+            #for neighbor in neighbors:
+            #    self.update_edge(node,neighbor,0)
+
+
 
     def add_edge(self, node1, node2):
 
@@ -64,6 +71,7 @@ class Graph:
         assert not self.has_edge(node1, node2), "Edge from {} -> {} already exists".format(node1, node2)
 
         self._graph[node1].add(node2)
+        self._weights[(node1,node2)] = 0
         node1.add_neighbor(node2)
 
 
