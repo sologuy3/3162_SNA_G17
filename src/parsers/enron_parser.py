@@ -69,8 +69,6 @@ class EnronParser:
         self.emp_count = len(employee_folders)          # sanity check
         for emp_folder in employee_folders:     # go through each folder (employee folders)
             self.progress += 1
-
-
             crnt_emp_path = path + emp_folder   # path of the current employee's folder
             email_folders = os.listdir(crnt_emp_path)
             for email_folder in email_folders:
@@ -78,19 +76,23 @@ class EnronParser:
                 progress = "\rCurrently parsing {} of {} employees: {}/{}".format(int(self.progress), self.emp_count,str(emp_folder),email_folder)
                 sys.stdout.write(progress)
                 sys.stdout.flush()
-                try:
-                    crnt_emp_emails = os.listdir(crnt_emp_folder)    # grab all the filenames in the inbox
-                    # starting to go each email in the directory 'inbox'
+                if os.path.isdir(crnt_emp_folder):
+                    try:
+                        crnt_emp_emails = os.listdir(crnt_emp_folder)    # grab all the filenames in the inbox
+                        # starting to go each email in the directory 'inbox'
 
-                    for email in crnt_emp_emails:
-                        email_path = crnt_emp_folder + '/' + email
-                        if not os.path.isdir(email_path):  # make sure we're not trying to open a folder
-                            # email_file = open(email_path)
-                            yield email_path
+                        for email in crnt_emp_emails:
+                            email_path = crnt_emp_folder + '/' + email
+                            if not os.path.isdir(email_path):  # make sure we're not trying to open a folder
+                                # email_file = open(email_path)
+                                yield email_path
 
-                except FileNotFoundError as err:
-                    print(err)
-                    yield False
+                    except FileNotFoundError as err:
+                        print(err)
+                        yield False
+                else:
+                    print(crnt_emp_folder)
+                    yield crnt_emp_folder
 
     @staticmethod
     def classify_line(line, prev):
@@ -127,3 +129,4 @@ class EnronParser:
         :return:
         """
         return self.emails
+EnronParser()
