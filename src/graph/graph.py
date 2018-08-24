@@ -47,9 +47,9 @@ class Graph:
         """
 
         assert not self.has_node(node), "Node {} already exists in the graph".format(node)
-        assert isinstance(neighbors, set), "Neighbors iterable is not a set"
-
+        # changed this to check if not None first - Yohan 24/08
         if neighbors is not None:
+            assert isinstance(neighbors, set), "Neighbors iterable is not a set"
             self._graph[node] = neighbors
 
     def add_edge(self, node1, node2):
