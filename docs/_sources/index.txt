@@ -10,3 +10,12 @@ Welcome to CompSci17_SNA's documentation!
 .. automodule:: graph
    :members:
 .. automodule:: graph.node
+
+..autosummary::
+     :toctree: stubs
+
+     Graph
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
