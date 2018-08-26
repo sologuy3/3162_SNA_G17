@@ -51,8 +51,9 @@ class Graph:
         :type neighbors: set
         :type node: Node
         """
-
+        assert node != neighbors, "please add self edges by adding the node individually first, instead of add_node()"
         assert not self.has_node(node), "Node {} already exists in the graph".format(node)
+        assert isinstance(node,Node), "node needs to be a Node object"
         # changed this to check if not None first - Yohan 24/08
         if neighbors is not None:
             assert isinstance(neighbors, set), "Neighbors iterable is not a set"
