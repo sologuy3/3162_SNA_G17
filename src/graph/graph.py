@@ -142,11 +142,14 @@ class Graph:
 
         assert self.has_node(node)
 
+
         for neighbor in self._graph[node]:
             if self.has_edge(node, neighbor):
                 self.delete_edge(node, neighbor)
             if self.has_edge(neighbor, node):
                 self.delete_edge(neighbor, node)
+
+        del self._graph[node]       # added this to remove node from graph fully
 
 
     def get_node_neighbors(self, node):
