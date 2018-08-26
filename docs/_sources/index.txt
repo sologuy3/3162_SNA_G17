@@ -10,3 +10,7 @@ Welcome to CompSci17_SNA's documentation!
 .. automodule:: graph
    :members:
 .. automodule:: graph.node
+
+.. toctree::
+   graph
+   :graph:
