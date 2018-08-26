@@ -101,8 +101,6 @@ class BasicGraphTest(unittest.TestCase):
         self.assertRaises(AssertionError, self.graph_a.has_edge, fail_node1, fail_neighbor)
         self.assertRaises(AssertionError, self.graph_a.has_edge, fail_neighbor, fail_node1)
 
-
-    # todo addNode
     def test_add_node(self):
         """
         Tests the add_node() method
@@ -123,7 +121,6 @@ class BasicGraphTest(unittest.TestCase):
         self.assertRaises(AssertionError,self.graph_a.add_node,node4,node5)
         self.assertRaises(AssertionError,self.graph_a.add_node,node5,node5)
 
-    # todo addEdge
     def test_add_edge(self):
         """
         Tests adding edges between two existing nodes using the add_edge() method
@@ -145,11 +142,40 @@ class BasicGraphTest(unittest.TestCase):
             self.assertIn((self.node3, neighbor), self.graph_a._weights.keys())  # tests that it was added to weights
             self.assertIn(neighbor, self.graph_a._graph[self.node3])  # tests that it was added to _graph
 
-
         # add a -> b and b -> a
+        for neighbor in neighbor_list:
+            self.graph_a.add_edge(neighbor, self.node3)
 
+        for neighbor in neighbor_list:
+            self.assertIn((neighbor, self.node3), self.graph_a._weights.keys())  # tests that it was added to weights
+            self.assertIn(self.node3, self.graph_a._graph[neighbor])  # tests that it was added to _graph
 
     # todo deleteNode
+    def test_delete_node(self):
+        """ test the delete_node method"""
+        self.graph_a.add_edge(self.node1, self.node3)
+        self.assertIn((self.node1,self.node3), self.graph_a._weights)
+        self.assertIn((self.node3,self.node1), self.graph_a._weights)
+
+        self.assertTrue(self.graph_a.has_node(self.node1))
+        self.graph_a.delete_node(self.node1)
+        self.assertFalse(self.graph_a.has_node(self.node1))
+
+        # confirm that the internal methods for clearing out the relationships were successful
+        self.assertNotIn((self.node1,self.node3), self.graph_a._weights)
+        self.assertNotIn((self.node3,self.node1), self.graph_a._weights)
+        self.assertRaises(KeyError,self.graph_a._graph.__getitem__,self.node1)
+
+        print(self.node1.__repr__())
+        print(self.graph_a._graph)
+
+
+        for each in self.graph_a._graph.values():
+            self.assertNotIn(self.node1,each)
+        self.assertNotIn(self.node1,self.graph_a._graph.keys())
+
+
+
 
     # todo deleteEdge
 

@@ -141,13 +141,13 @@ class Graph:
         """
 
         assert self.has_node(node)
-
         for neighbor in self._graph[node].copy():
             # added copy to avoid RuntimeError: Set changed size during iteration - YF 26/08
             if self.has_edge(node, neighbor):
                 self.delete_edge(node, neighbor)
             if self.has_edge(neighbor, node):
                 self.delete_edge(neighbor, node)
+
 
         del self._graph[node]       # added this to remove node from graph fully YF 26/08
 
