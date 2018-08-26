@@ -67,10 +67,7 @@ class Graph:
             #for neighbor in neighbors:
             #    self.update_edge(node,neighbor,0)
 
-
-
     def add_edge(self, node1, node2):
-
         """
         Add an edge directed from node1 towards node2
         :type node1: Node
