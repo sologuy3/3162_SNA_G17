@@ -29,7 +29,8 @@ class Node:
 
 
     def __str__(self):
-        return "Name: {} | Neighbors: [{}] | Attributes: {{{}}})".format(self.label, self.get_neighbors(stringify=True), self.attributes)
+        return "Name: {} | Neighbors: [{}] | Attributes: {{{}}})".format(self.label, self.get_neighbors(stringify=True),
+                                                                         str(self.attributes))
 
 
     def get_neighbors(self,stringify=False):
@@ -40,10 +41,13 @@ class Node:
         """
         if stringify:
             neighbor_string = ''
-            if self._neighbors:
+            if self._neighbors or len(self._neighbors):
                 for neighbor in self._neighbors:
-                    neighbor_string = neighbor_string + neighbor.label
-            return neighbor_string
+                    neighbor_string = neighbor_string + str(neighbor.label)
+                return neighbor_string
+
+            else:
+                return 'No Neighbors'
 
         else:
             return self._neighbors
