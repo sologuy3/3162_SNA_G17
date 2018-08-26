@@ -28,12 +28,19 @@ class Graph:
         :type node1: Node
         :type node2: Node
         """
-
+        assert isinstance(node1,Node) and isinstance(node2,Node), "Both node1 and node2 must be Node objects"
         assert self.has_node(node1), "node1 {} not present in graph".format(node1)
         assert self.has_node(node2), "node2 {} not present in graph".format(node2)
-        assert node2 in self._graph[node1], "No connection exists between node1 {} and node2 {}".format(node1, node2)
-        assert (node1, node2) in self._weights, "No weight for edge ({}, {})".format(node1, node2)
-        return node1, node2 in self._weights
+        #assert node2 in self._graph[node1], "No connection exists between node1 {} and node2 {}".format(node1, node2)
+        # YOHAN- I don't think raising an error here makes sense, should just return false
+        if node2 in self._graph[node1]:
+            if (node1, node2) not in self._weights:#"No weight for edge ({}, {}) ".format(node1, node2)
+                raise ReferenceError("The edge {}:{} exists but has not been assigned a weight".format(node1, node2))
+            else:
+                return (node1, node2) in self._weights  # fixed lack of brackets - YF 25/8
+        else:
+            return False
+
 
 
     def add_node(self, node, neighbors=None):
@@ -53,6 +60,8 @@ class Graph:
             for neighbor in neighbors:
                 self._weights[(node,neighbor)] = 0
                 node.add_neighbor(neighbor)
+        else:
+            self._graph[node] = set()
 
             #for neighbor in neighbors:
             #    self.update_edge(node,neighbor,0)
@@ -206,11 +215,3 @@ class Graph:
         """
         assert self.has_edge(node1, node2), "No edge exists between node1 {} and node2 {}".format(node1, node2)
         return self._weights[(node1, node2)]
-
-
-
-
-
-
-
-
