@@ -46,4 +46,6 @@ def save_json():
         out.write(json)
 
 if __name__ == "__main__":
-    save_json()
+    d = get_emails_from_json()
+
+    pdb.set_trace()

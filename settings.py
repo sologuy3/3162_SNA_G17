@@ -15,4 +15,4 @@ INSTALLED_APPS = (
 
 )
 
-SECRET_KEY = 'REPLACE_ME'
+SECRET_KEY = '19mdjujzlo2kmooqomsuziu3209idmionduinakaoinsmx'

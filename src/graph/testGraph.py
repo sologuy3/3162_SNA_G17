@@ -1,3 +1,4 @@
+import pdb
 import unittest
 
 from src.graph.node import Node
@@ -158,7 +159,11 @@ class BasicGraphTest(unittest.TestCase):
         self.assertIn((self.node3,self.node1), self.graph_a._weights)
 
         self.assertTrue(self.graph_a.has_node(self.node1))
+
         self.graph_a.delete_node(self.node1)
+
+        print(self.graph_a.get_all_edges(stringify=True))
+
         self.assertFalse(self.graph_a.has_node(self.node1))
 
         # confirm that the internal methods for clearing out the relationships were successful
@@ -166,12 +171,12 @@ class BasicGraphTest(unittest.TestCase):
         self.assertNotIn((self.node3,self.node1), self.graph_a._weights)
         self.assertRaises(KeyError,self.graph_a._graph.__getitem__,self.node1)
 
-        print(self.node1.__repr__())
-        print(self.graph_a._graph)
+        # confirm _graph neighbors have been deleted
 
+        for node, neighbors in self.graph_a._graph.items():
+            print(self.node1, "|||", node)
+            self.assertNotIn(self.node1,neighbors)
 
-        for each in self.graph_a._graph.values():
-            self.assertNotIn(self.node1,each)
         self.assertNotIn(self.node1,self.graph_a._graph.keys())
 
 

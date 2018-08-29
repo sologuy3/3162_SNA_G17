@@ -9,7 +9,8 @@ class Graph:
         self.modifiable = modifiable
 
     def __str__(self):
-        pass
+
+        return self.name + ":\n\t"  + "\n\t".join([str(node) for node in self._graph.keys()]) + "\n----"
         # TODO: Graph string with node count / edge count etc
 
     def has_node(self, node):   # todo bugfix - there's something funky here
@@ -131,7 +132,6 @@ class Graph:
         self._graph[node1].remove(node2)
         del self._weights[(node1, node2)]
 
-
     def delete_node(self, node):
         """
         Obliterate a node out of existence.
@@ -141,13 +141,14 @@ class Graph:
         """
 
         assert self.has_node(node)
-        for neighbor in self._graph[node].copy():
+        for other_node in self.get_all_nodes():
             # added copy to avoid RuntimeError: Set changed size during iteration - YF 26/08
-            if self.has_edge(node, neighbor):
-                self.delete_edge(node, neighbor)
-            if self.has_edge(neighbor, node):
-                self.delete_edge(neighbor, node)
-
+            if self.has_edge(node, other_node):
+                self.delete_edge(node, other_node)
+            if self.has_edge(other_node, node):
+                #print("B:",(neighbor, node))
+                self.delete_edge(other_node, node)
+                #print("A:",(neighbor, node))
 
         del self._graph[node]       # added this to remove node from graph fully YF 26/08
 
@@ -201,11 +202,12 @@ class Graph:
         for k, v in self._weights.items():
             # k is the tuple, v is the weight
             if stringify:
-                l.append((str(k[0]), str(k[1]), v))
+                l.append("({}->{}: {})".format(str(k[0].label), str(k[1].label), v))
             else:
                 l.append((k[0], k[1], v))
 
-        return l
+        return self.name + "weights: \n\t" + "\n\t".join(l) if stringify else l
+
 
     def get_weight(self, node1, node2):
         """
