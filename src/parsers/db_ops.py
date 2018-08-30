@@ -9,15 +9,22 @@ django.setup()
 
 from data.models import Person, Email
 from src.parsers.enron_parser import EnronParser
+import re
 
 
-def main():
+def main(emails):
+
+    x_from_regex = re.compile("( *)([a-zA-Z ]*) <(.*?)>")
 
 
     for inmem_email in emails.emails():
+        cleaned = clean(inmem_email)
+        from_data = x_from_regex.match(cleaned['X-From'])
+        from_name = from_data.group(2)
+        from_email = from_data.group(3)
+        if not Person.objects.filter(email=inmem_email['From']).exists():
+            p = Person.objects.create(name=from_name, email=from_email)
 
-        if Person.objects.filter(email=inmem_email['From']).exists():
-            pass
 
         db_email = Email()
         db_email.id = inmem_email['id']
@@ -26,7 +33,19 @@ def main():
         db_email.to = inmem_email['To']
         db_email.authors = inmem_email['From']
 
+        if not Email.objects.filter(id=db_email.id).exists():
+            email = Email.objects.create(
+
+            )
+
     pdb.set_trace()
+
+def clean(email):
+    d = {}
+    d['to'] = [to.replace(" ", "") for to in d['to']]
+    for k, v in email:
+        d[k] = v.replace("\n","")
+    return d
 
 def get_emails_from_json():
 
@@ -46,6 +65,5 @@ def save_json():
         out.write(json)
 
 if __name__ == "__main__":
-    d = get_emails_from_json()
-
-    pdb.set_trace()
+    emails = get_emails_from_json()
+    main(emails)
