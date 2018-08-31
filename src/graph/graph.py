@@ -60,7 +60,7 @@ class Graph:
             assert isinstance(neighbors, set), "Neighbors iterable is not a set"
             self._graph[node] = neighbors
             for neighbor in neighbors:
-                self._weights[(node,neighbor)] = 0
+                self._weights[(node,neighbor)] = 1
                 node.add_neighbor(neighbor)
         else:
             self._graph[node] = set()
@@ -79,7 +79,7 @@ class Graph:
         assert not self.has_edge(node1, node2), "Edge from {} -> {} already exists".format(node1, node2)
 
         self._graph[node1].add(node2)
-        self._weights[(node1,node2)] = 0
+        self._weights[(node1,node2)] = 1
         node1.add_neighbor(node2)
 
 
@@ -207,7 +207,6 @@ class Graph:
                 l.append((k[0], k[1], v))
 
         return self.name + "weights: \n\t" + "\n\t".join(l) if stringify else l
-
 
     def get_weight(self, node1, node2):
         """
