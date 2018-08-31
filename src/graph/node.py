@@ -29,8 +29,10 @@ class Node:
 
 
     def __str__(self):
-        return "Name: {} | Neighbors: [{}] | Attributes: {{{}}})".format(self.label, self.get_neighbors(stringify=True),
-                                                                         str(self.attributes))
+        return self.label
+
+        #return "Name: {} | Neighbors: [{}] | Attributes: {{{}}})".format(self.label, self.get_neighbors(stringify=True),
+        #                                                                str(self.attributes))
 
     def __repr__(self):
         return str(self)

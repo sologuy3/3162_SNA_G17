@@ -1,4 +1,3 @@
-import pdb
 import unittest
 
 from src.graph.node import Node
@@ -178,9 +177,6 @@ class BasicGraphTest(unittest.TestCase):
             self.assertNotIn(self.node1,neighbors)
 
         self.assertNotIn(self.node1,self.graph_a._graph.keys())
-
-
-
 
     # todo deleteEdge
 
