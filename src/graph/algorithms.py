@@ -1,7 +1,6 @@
 from src.graph.graph import Graph
 from src.graph.node import Node
 import math
-import heapq
 
 
 class GraphAlgorithms:
@@ -83,6 +82,6 @@ class GraphAlgorithms:
         for each_node in graph.get_all_nodes():
             shortest_dist, prev = self.shortest_path_length(graph,each_node)
             for each in shortest_dist.values():
-                if each > max:
+                if (each > max) and (each is not math.inf):
                     max = each
         return max

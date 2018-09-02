@@ -27,5 +27,6 @@ graph_a = {
             '4': [inf, inf, inf, inf, 0]
 
         },
-    'avgpath':62.625
+    'avgpath': 62.625,
+    'diameter': 124
 }
