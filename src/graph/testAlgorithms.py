@@ -82,3 +82,11 @@ class BasicGraphTest(unittest.TestCase):
         sample_graph_a = initialise_sample_graph(sample_graphs.graph_a)
         self.assertEqual(self.graph_algorithms.mode_path_length(sample_graph_a), sample_graphs.graph_a['mode_path_length'],
                          'mode_path_length algorithm failed for sample graph a')
+
+    def test_median_path(self):
+        self.assertEqual(self.graph_algorithms.median_path_length(self.basic_graph), 1,
+                         'median_path_length algorithm failed for basic graph')
+        sample_graph_a = initialise_sample_graph(sample_graphs.graph_a)
+        self.assertEqual(self.graph_algorithms.median_path_length(sample_graph_a),
+                         sample_graphs.graph_a['median_path_length'],
+                         'median_path_length algorithm failed for sample graph a')

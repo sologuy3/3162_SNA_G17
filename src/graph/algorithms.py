@@ -12,7 +12,7 @@ class GraphAlgorithms:
         Makes sure the graph is good
         :return:
         """
-        if isinstance(graph, Graph):    # todo verify _graph vs _weights
+        if isinstance(graph, Graph):  # todo verify _graph vs _weights
             return True
         else:
             raise TypeError("Graph objected expected, got {} instead".format(str(type(graph))))
@@ -20,7 +20,7 @@ class GraphAlgorithms:
     def node_count(self, graph):
         return len(graph.get_all_nodes())
 
-    def edge_count(self,  graph):
+    def edge_count(self, graph):
         return len(graph.get_all_edges())
 
     def shortest_path_length(self, graph, source):
@@ -33,7 +33,7 @@ class GraphAlgorithms:
 
         for v in all_nodes:  # initialization
             dist[v] = math.inf  # unknown distance from source to v
-            prev[v] = None   # previous node in optimal path from source
+            prev[v] = None  # previous node in optimal path from source
             q.add(v)
 
         dist[source] = 0
@@ -43,7 +43,7 @@ class GraphAlgorithms:
             q.remove(u)
 
             for v in graph.get_node_neighbors(u):
-                alt = dist[u] + graph.get_weight(u,v)
+                alt = dist[u] + graph.get_weight(u, v)
                 if alt < dist[v]:
                     dist[v] = alt
                     prev[v] = u
@@ -64,30 +64,38 @@ class GraphAlgorithms:
 
         return min_node
 
-    def minimum_average_path(self,graph):
+    def minimum_average_path(self, graph):
         sum = 0
         count = 0
         for each_node in graph.get_all_nodes():
-            shortest_dist, prev = self.shortest_path_length(graph,each_node)
+            shortest_dist, prev = self.shortest_path_length(graph, each_node)
             for each in shortest_dist.values():
-                if (each is not math.inf) and (each is not 0):      # ignores unreachable paths and self-paths
+                if (each is not math.inf) and (each is not 0):  # ignores unreachable paths and self-paths
                     sum += each
                     count += 1
-        return sum/count
+        return sum / count
 
-    def diameter(self,graph):
+    def diameter(self, graph):
         max = 0
         for each_node in graph.get_all_nodes():
-            shortest_dist, prev = self.shortest_path_length(graph,each_node)
+            shortest_dist, prev = self.shortest_path_length(graph, each_node)
             for each in shortest_dist.values():
                 if (each > max) and (each is not math.inf):
                     max = each
         return max
 
-    def mode_path_length(self,graph):
+    def mode_path_length(self, graph):
         from collections import Counter
         all_shortest = []
         for each_node in graph.get_all_nodes():
-            shortest_dist, prev = self.shortest_path_length(graph,each_node)
+            shortest_dist, prev = self.shortest_path_length(graph, each_node)
             all_shortest = all_shortest + [x for x in shortest_dist.values() if x not in (0, math.inf)]
         return Counter(all_shortest).most_common()[0]
+
+    def median_path_length(self, graph):
+        from statistics import median
+        all_shortest = []
+        for each_node in graph.get_all_nodes():
+            shortest_dist, prev = self.shortest_path_length(graph, each_node)
+            all_shortest = all_shortest + [x for x in shortest_dist.values() if x not in (0, math.inf)]
+        return median(all_shortest)
