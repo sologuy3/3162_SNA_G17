@@ -38,10 +38,16 @@ class BasicGraphTest(unittest.TestCase):
     def test_node_count(self):
         node_count = self.graph_algorithms.node_count(self.basic_graph)
         self.assertEqual(node_count, 3)
+        sample_graph_a = initialise_sample_graph(sample_graphs.graph_a)
+        self.assertEqual(self.graph_algorithms.node_count(sample_graph_a),5)
+
 
     def test_edge_count(self):
         edge_count = self.graph_algorithms.edge_count(self.basic_graph)
         self.assertEqual(edge_count, 2)
+        sample_graph_a = initialise_sample_graph(sample_graphs.graph_a)
+        self.assertEqual(self.graph_algorithms.edge_count(sample_graph_a),5)
+
 
     def test_shortest_path(self):
         sample_graph_a = initialise_sample_graph(sample_graphs.graph_a)
@@ -69,3 +75,10 @@ class BasicGraphTest(unittest.TestCase):
         sample_graph_a = initialise_sample_graph(sample_graphs.graph_a)
         self.assertEqual(self.graph_algorithms.diameter(sample_graph_a), sample_graphs.graph_a['diameter'],
                          'diameter algorithm failed for sample graph a')
+
+    def test_mode_path(self):
+        self.assertEqual(self.graph_algorithms.mode_path_length(self.basic_graph), (1, 2),
+                         'mode_path_length algorithm failed for basic graph')
+        sample_graph_a = initialise_sample_graph(sample_graphs.graph_a)
+        self.assertEqual(self.graph_algorithms.mode_path_length(sample_graph_a), sample_graphs.graph_a['mode_path_length'],
+                         'mode_path_length algorithm failed for sample graph a')

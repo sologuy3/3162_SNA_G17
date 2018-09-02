@@ -12,17 +12,15 @@ class GraphAlgorithms:
         Makes sure the graph is good
         :return:
         """
-        if isinstance(graph, Graph):
+        if isinstance(graph, Graph):    # todo verify _graph vs _weights
             return True
         else:
             raise TypeError("Graph objected expected, got {} instead".format(str(type(graph))))
 
     def node_count(self, graph):
-        self._health_check(graph)
         return len(graph.get_all_nodes())
 
     def edge_count(self,  graph):
-        self._health_check(graph)
         return len(graph.get_all_edges())
 
     def shortest_path_length(self, graph, source):
@@ -85,3 +83,11 @@ class GraphAlgorithms:
                 if (each > max) and (each is not math.inf):
                     max = each
         return max
+
+    def mode_path_length(self,graph):
+        from collections import Counter
+        all_shortest = []
+        for each_node in graph.get_all_nodes():
+            shortest_dist, prev = self.shortest_path_length(graph,each_node)
+            all_shortest = all_shortest + [x for x in shortest_dist.values() if x not in (0, math.inf)]
+        return Counter(all_shortest).most_common()[0]

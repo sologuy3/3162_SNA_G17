@@ -28,5 +28,6 @@ graph_a = {
 
         },
     'avgpath': 62.625,
-    'diameter': 124
+    'diameter': 124,
+    'mode_path_length': (99, 2)
 }
