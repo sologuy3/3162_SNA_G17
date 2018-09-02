@@ -46,11 +46,25 @@ class BasicGraphTest(unittest.TestCase):
     def test_shortest_path(self):
         shortest_path_node1 = self.graph_algorithms.shortest_path_length(self.graph_a, self.node2)
         sample_graph_a = self.initialise_sample_graph(sample_graphs.graph_a)
-        for each_node in sample_graph_a.get_all_nodes():
-            shortest_dist, prev = self.graph_algorithms.shortest_path_length(sample_graph_a,each_node)
-            source = each_node.label
-            # todo finish writing test
+        paths = {}
+        for source_node in sample_graph_a.get_all_nodes():
+            shortest_dist, prev = self.graph_algorithms.shortest_path_length(sample_graph_a,source_node)
+            source_label = source_node.label
+            length_list = [None]*5
+            for node in shortest_dist.keys():
+                #print(source_label+'>'+node.label+':'+str(shortest_dist[node]))
+                length_list.__setitem__(int(node.label), shortest_dist[node])
+            paths[source_label] = length_list
+        #print(paths)
+        #print(sample_graphs.graph_a['minpath'])
+        self.assertEqual(paths,sample_graphs.graph_a['minpath'])
+
+
+
+
+
 
     def test_average_path(self):
         self.assertEqual(self.graph_algorithms.minimum_average_path(self.graph_a),1,"minimum average path failed")
-        print(self.graph_algorithms.minimum_average_path(self.initialise_sample_graph(sample_graphs.graph_a)))
+        sample_graph_a = self.initialise_sample_graph(sample_graphs.graph_a)
+        self.assertEqual(self.graph_algorithms.minimum_average_path(sample_graph_a),sample_graphs.graph_a['avgpath'])

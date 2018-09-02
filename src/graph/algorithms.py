@@ -74,10 +74,15 @@ class GraphAlgorithms:
             shortest_dist, prev = self.shortest_path_length(graph,each_node)
             for each in shortest_dist.values():
                 if (each is not math.inf) and (each is not 0):      # ignores unreachable paths and self-paths
-                    print(each)
                     sum += each
                     count += 1
-        print(sum)
-        print(count)
         return sum/count
 
+    def diameter(self,graph):
+        max = 0
+        for each_node in graph.get_all_nodes():
+            shortest_dist, prev = self.shortest_path_length(graph,each_node)
+            for each in shortest_dist.values():
+                if each > max:
+                    max = each
+        return max
