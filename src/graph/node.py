@@ -34,8 +34,6 @@ class Node:
         #return "Name: {} | Neighbors: [{}] | Attributes: {{{}}})".format(self.label, self.get_neighbors(stringify=True),
         #                                                                str(self.attributes))
 
-    def __repr__(self):
-        return str(self)
 
     def get_neighbors(self,stringify=False):
         """

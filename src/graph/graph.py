@@ -68,7 +68,7 @@ class Graph:
             #for neighbor in neighbors:
             #    self.update_edge(node,neighbor,0)
 
-    def add_edge(self, node1, node2):
+    def add_edge(self, node1, node2, weight=1):
         """
         Add an edge directed from node1 towards node2
         :type node1: Node
@@ -79,7 +79,7 @@ class Graph:
         assert not self.has_edge(node1, node2), "Edge from {} -> {} already exists".format(node1, node2)
 
         self._graph[node1].add(node2)
-        self._weights[(node1,node2)] = 1
+        self._weights[(node1,node2)] = weight
         node1.add_neighbor(node2)
 
 
@@ -217,3 +217,13 @@ class Graph:
         """
         assert self.has_edge(node1, node2), "No edge exists between node1 {} and node2 {}".format(node1, node2)
         return self._weights[(node1, node2)]
+
+    def get_node_from_label(self,label):
+        """
+        O(n) method to find a node by its
+        :param label:
+        :return:
+        """
+        for node in self._graph.keys():
+            if node.label is label:
+                return node
