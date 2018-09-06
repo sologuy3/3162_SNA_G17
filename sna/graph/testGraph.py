@@ -180,9 +180,6 @@ class BasicGraphTest(unittest.TestCase):
 
         self.assertNotIn(self.node1,self.graph_a._graph.keys())
 
-
-
-
     # todo deleteEdge
 
     # todo getNodeNeighbors
