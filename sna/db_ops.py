@@ -28,31 +28,31 @@ def main(emails_list):
             continue
 
         person, created = Person.objects.get_or_create(email_address=from_email)
-        #
-        # db_email = Email()
-        # db_email.id = inmem_email['id']
-        # db_email.cc = inmem_email['X-cc']
-        # db_email.bcc = inmem_email['X-bcc']
-        # db_email.to = inmem_email['To']
-        # db_email.subject = inmem_email['Subject']
-        #
-        # datestring = inmem_email['datetime'].split(" (")[0]
-        # db_email.time_sent = datetime.datetime.strptime(datestring, "%a, %d %b %Y %H:%M:%S %z")
-        #
-        # email, created = Email.objects.get_or_create(id=db_email.id,time_sent=db_email.time_sent, author=person)
-        #
-        # if created:
-        #     if inmem_email['datetime'][6] == " ":  # Check if DOM < 10 by seeing if 7th character is a space
-        #         inmem_email['datetime'] = inmem_email['datetime'].replace(", ", ", 0")  # Make day-of-month 0 padded
-        #     inmem_email['datetime'] = inmem_email['datetime'].split(" (")[0]
-        #     email.author = person
-        # try:
-        #     recipient, created = Person.objects.get_or_create(email=db_email.to[0])
-        #     email.recipients.add(recipient)
-        # except Exception as e:
-        #     traceback.print_exc()
-        #     pdb.set_trace()
-        # email.save()
+
+        db_email = Email()
+        db_email.id = inmem_email['id']
+        db_email.cc = inmem_email['X-cc']
+        db_email.bcc = inmem_email['X-bcc']
+        db_email.to = inmem_email['To']
+        db_email.subject = inmem_email['Subject']
+
+        datestring = inmem_email['datetime'].split(" (")[0]
+        db_email.time_sent = datetime.datetime.strptime(datestring, "%a, %d %b %Y %H:%M:%S %z")
+
+        email, created = Email.objects.get_or_create(id=db_email.id,time_sent=db_email.time_sent, author=person)
+
+        if created:
+            if inmem_email['datetime'][6] == " ":  # Check if DOM < 10 by seeing if 7th character is a space
+                inmem_email['datetime'] = inmem_email['datetime'].replace(", ", ", 0")  # Make day-of-month 0 padded
+            inmem_email['datetime'] = inmem_email['datetime'].split(" (")[0]
+            email.author = person
+        try:
+            recipient, created = Person.objects.get_or_create(email=db_email.to[0])
+            email.recipients.add(recipient)
+        except Exception as e:
+            traceback.print_exc()
+            pdb.set_trace()
+        email.save()
 
 
 def clean(email):
