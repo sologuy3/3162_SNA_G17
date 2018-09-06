@@ -46,7 +46,10 @@ class EnronParser:
                 for line in email_file:         # iterate through lines in the email
                     line = line.replace('\t','')        # strip out \t as part of data cleaning
                     prev = self.classify_line(line, prev)      # this function classifies where this line should go
-                    line = line.strip('\n')     # data cleaning
+                    line = line.replace('\n','')     # data cleaning
+                    line = line.replace('\r','')     # data cleaning
+                    if len(line) > 0 and line[0] == " ":               # data cleaning
+                        line = line[1:]
 
                     if prev is not 'body':      # If there is a label (like From:), remove it
                         line = line.replace(prev+':','')
@@ -57,6 +60,7 @@ class EnronParser:
                     else:
                         email[prev] = [line]
 
+                email['body'] = ''              # don't save the body - not needed
                 self.emails.append(email)       # add the current email to the list of emails.
 
 
@@ -65,7 +69,7 @@ class EnronParser:
         This is a generator that feeds the file path for each email file.
         :return:
         """
-        path = '../../maildir/'                 # see assumption in docstring
+        path = '../maildir/'                 # see assumption in docstring
         employee_folders = os.listdir(path)     # grab a list of folders in the current directory
         self.emp_count = len(employee_folders)          # sanity check
         for emp_folder in employee_folders:     # go through each folder (employee folders)

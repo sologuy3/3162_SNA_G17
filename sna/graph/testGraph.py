@@ -1,8 +1,9 @@
-import pdb
 import unittest
 
-from src.graph.node import Node
-from src.graph.graph import Graph
+from sna_app.graph.graph import Graph
+
+from sna.graph.node import Node
+
 
 class BasicGraphTest(unittest.TestCase):
     def setUp(self):

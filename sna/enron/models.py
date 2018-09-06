@@ -8,20 +8,22 @@ except Exception:
 
 class Person(models.Model):
     name = models.CharField(max_length=100)
-    email = models.EmailField()
+    email_address = models.EmailField(null=False)
 
     @property
     def organisation(self):
-        return self.email.split("@")[1].split(".")[0]
+        return self.email_address.split("@")[1].split(".")[0]
 
+    def __str__(self):
+        return self.email_address
 
 class Email(models.Model):
     id = models.CharField(max_length=100, primary_key=True)
 
-    authors = models.ManyToManyField(Person, related_name="authors")
+    author = models.ForeignKey(Person, on_delete=models.CASCADE)
     recipients = models.ManyToManyField(Person, related_name="recipients")
-    ccs = models.ManyToManyField(Person, related_name="ccs")
-    bccs = models.ManyToManyField(Person, related_name="bccs")
+    # ccs = models.ManyToManyField(Person, related_name="ccs")
+    # bccs = models.ManyToManyField(Person, related_name="bccs")
 
     subject = models.CharField(max_length=200)
     body = models.TextField()

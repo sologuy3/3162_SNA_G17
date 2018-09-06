@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $.getJSON("/vis/get_enron.json", function(data) {
+            var items = []
+            $.each( data, function( key, val ) {
+            items.push( "<li id='" + key + "'>" + val + "</li>" );
+             });
+
+              $( "<ul/>", {
+                "class": "my-new-list",
+                html: items.join( "" )
+              }).appendTo( "body" );
+            })
+    </script>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>This page was made with algorithms, coding and ♥</h1>
+</body>
+</html>
