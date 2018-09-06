@@ -90,3 +90,26 @@ class BasicGraphTest(unittest.TestCase):
         self.assertEqual(self.graph_algorithms.median_path_length(sample_graph_a),
                          sample_graphs.graph_a['median_path_length'],
                          'median_path_length algorithm failed for sample graph a')
+
+    def test_average_edges_per_node(self):
+        self.assertEqual(self.graph_algorithms.average_edges_per_node(self.basic_graph),0.67,
+                         'average_edges_per_node algorithm failed for sample graph a')
+        sample_graph_a = initialise_sample_graph(sample_graphs.graph_a)
+        self.assertEqual(self.graph_algorithms.average_edges_per_node(sample_graph_a),1.0,
+                         'average_edges_per_node algorithm failed for sample graph a')
+
+    def test_dfs(self):     # todo finish test_dfs
+        print(self.graph_algorithms.depth_first_search(self.basic_graph,self.node1))
+
+    def test_discover_components(self):      # todo finish test_clustering
+        sample_graph_b = initialise_sample_graph(sample_graphs.graph_b)
+        print(self.graph_algorithms.discover_components(sample_graph_b))
+
+    def test_edmonds(self):
+        sample_graph_c = initialise_sample_graph(sample_graphs.graph_c)
+        source = sample_graph_c.get_node_from_label('0')
+        sink = sample_graph_c.get_node_from_label('11')
+        print(self.graph_algorithms.edmonds_karp(sample_graph_c,source,sink))
+
+
+
