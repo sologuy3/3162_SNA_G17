@@ -1,8 +1,8 @@
-from src.graph.algorithms import GraphAlgorithms
-from src.graph.graph import Graph
-from src.graph.node import Node
+from sna.graph.algorithms import GraphAlgorithms
+from sna.graph.graph import Graph
+from sna.graph.node import Node
 import unittest
-from src.graph import sample_graphs
+from sna.graph import sample_graphs
 
 
 def initialise_sample_graph(sample_graph):
