@@ -1,4 +1,4 @@
-from src.graph.node import Node
+from sna.graph.node import Node
 
 class Graph:
     def __init__(self, name, modifiable=False):

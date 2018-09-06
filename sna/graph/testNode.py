@@ -1,6 +1,7 @@
-import unittest
-from src.graph.node import Node
 import gc
+import unittest
+
+from sna.graph.node import Node
 
 
 class NodeTest(unittest.TestCase):
