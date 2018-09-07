@@ -29,7 +29,8 @@ class Node:
 
 
     def __str__(self):
-        return self.label
+        return str(self.label)
+
 
         #return "Name: {} | Neighbors: [{}] | Attributes: {{{}}})".format(self.label, self.get_neighbors(stringify=True),
         #                                                                str(self.attributes))
@@ -77,8 +78,8 @@ class Node:
         :param neighbor: The node to delete
         :return: None
         """
-        assert isinstance(neighbor, Node), "Neighbor {} is not a node".format(neighbor)
-        assert neighbor in self._neighbors, "{} not in neighbors set".format(neighbor)
+        assert isinstance(neighbor, Node), "Neighbor {} is not a node".format(str(neighbor))
+        assert neighbor in self._neighbors, "{} not in neighbors set".format(str(neighbor))
 
         self._neighbors.remove(neighbor)
 

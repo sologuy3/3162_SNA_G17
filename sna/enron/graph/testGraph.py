@@ -1,7 +1,6 @@
 import unittest
 
-from sna_app.graph.graph import Graph
-
+from sna.graph.graph import Graph
 from sna.graph.node import Node
 
 
