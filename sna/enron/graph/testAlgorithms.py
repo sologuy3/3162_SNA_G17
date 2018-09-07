@@ -1,8 +1,8 @@
-from sna.graph.algorithms import GraphAlgorithms
-from sna.graph.graph import Graph
-from sna.graph.node import Node
+from enron.graph.algorithms import GraphAlgorithms
+from enron.graph.graph import Graph
+from enron.graph.graph import Node
 import unittest
-from sna.graph import sample_graphs
+from graph import sample_graphs
 
 
 def initialise_sample_graph(sample_graph):

@@ -1,8 +1,5 @@
-"""
-Collection of graph algorithms written for the Graph module.
-"""
-from sna.graph.graph import Graph
-from sna.graph.node import Node
+from enron.graph.graph import Graph
+from enron.graph.graph import Node
 import math
 
 
@@ -10,8 +7,7 @@ class GraphAlgorithms:
     def __init__(self):
         pass
 
-    @staticmethod
-    def _health_check(graph):
+    def _health_check(self, graph):
         """
         Makes sure the graph is good
         :return:
@@ -104,8 +100,8 @@ class GraphAlgorithms:
             all_shortest = all_shortest + [x for x in shortest_dist.values() if x not in (0, math.inf)]
         return median(all_shortest)
 
-    def average_edges_per_node(self, graph):
-        return round(self.edge_count(graph) / self.node_count(graph), 2)
+    def average_edges_per_node(self,graph):
+        return round(self.edge_count(graph)/self.node_count(graph), 2)
 
     def depth_first_search(self, graph, source):
         visited, stack = set(), [source]
@@ -116,12 +112,12 @@ class GraphAlgorithms:
                 stack.extend(set(graph.get_node_neighbors(vertex)) - visited)
         return visited
 
-    def discover_components(self, graph):
+    def discover_components(self,graph):
         all_nodes = set(graph.get_all_nodes())
         not_discovered = all_nodes.copy()
         components = []
         while not_discovered:
-            currently_discovered = all_nodes - not_discovered
+            currently_discovered = all_nodes-not_discovered
             current_source = not_discovered.pop()
             dfs_component = self.depth_first_search(graph, current_source)
 
@@ -140,73 +136,50 @@ class GraphAlgorithms:
         while queue:
             (vertex, path) = queue.pop(0)
             for next in set(graph.get_node_neighbors(vertex)) - set(path):
-                if residual_capacity[(vertex, next)] > 0:  # if the edge has any flow capacity left
+                if residual_capacity[(vertex,next)] > 0:       # if the edge has any flow capacity left
                     if next == goal:
-                        return path + [next]  # end the first time a path is found
+                        return path + [next]        # end the first time a path is found
                     else:
                         queue.append((next, path + [next]))
 
-    def collect_flow(self, path, residual_capacity_dict):
+    def collect_flow(self,path,residual_capacity_dict):
         """
         This method identifies how much flow is available through a given path and removes it from the
         residual capacity
         :return:
         """
         flow = math.inf
-        for i, node in enumerate(path):
-            if i != len(path) - 1:
-                flow = min(flow, residual_capacity_dict[(path[i], path[i + 1])])
+        for i,node in enumerate(path):
+            if i != len(path)-1:
+                flow = min(flow,residual_capacity_dict[(path[i],path[i+1])])
 
-        for i, node in enumerate(path):
-            if i != len(path) - 1:
-                residual_capacity_dict[(path[i], path[i + 1])] -= flow
+        for i,node in enumerate(path):
+            if i != len(path)-1:
+                residual_capacity_dict[(path[i],path[i+1])] -= flow
+
 
         return residual_capacity_dict, flow
 
-    def edmonds_karp(self, graph, source, sink):
+
+    def edmonds_karp(self,graph,source,sink):
         # https://brilliant.org/wiki/edmonds-karp-algorithm/#algorithm-pseudo-code
-        flow = 0  # start with flow = 0
-        residual_capacity = {}  # this dictionary keeps track of how much capacity is left in an edge
-        for edge in graph.get_all_edges():  # all the edges start at full capacity
-            residual_capacity[(edge[0], edge[1])] = graph.get_weight(edge[0], edge[1])
+        flow = 0        # start with flow = 0
+        residual_capacity = {}      # this dictionary keeps track of how much capacity is left in an edge
+        for edge in graph.get_all_edges():      # all the edges start at full capacity
+            residual_capacity[(edge[0],edge[1])] = graph.get_weight(edge[0],edge[1])
         while True:
-            P = self._bfs_flow_paths(graph, source, sink, residual_capacity)
-            if P is None:  # if there is no path that can augment the flow, break
+            P = self._bfs_flow_paths(graph,source,sink,residual_capacity)
+            if P is None:   # if there is no path that can augment the flow, break
                 break
-            residual_capacity, m = self.collect_flow(P, residual_capacity)
+            residual_capacity, m = self.collect_flow(P,residual_capacity)
             print(m)
             flow += m
-        return flow, residual_capacity
-        # i'm returning residual capcity back because it would be nice to highlight the paths here
+        return flow
 
-    def local_clustering_coefficient(self, graph, node):
-        outgoing_neighbors = graph.get_node_neighbors(node)
-        incoming_neighbors = graph.get_incoming_neighbors(node)
-        all_neighbors = incoming_neighbors.union(outgoing_neighbors)
-        all_neighbors.add(node)
-        # find the number of links between these.
-        neighborhood_links = 0
-        for neighborhood_nodes in all_neighbors:
-            neighborhood_links += len(all_neighbors.intersection(graph.get_node_neighbors(neighborhood_nodes)))
-        # number of possible neighbors
-        max_neighbors = len(all_neighbors) * (len(all_neighbors) - 1)
-        coefficient = neighborhood_links / max_neighbors
-        return round(coefficient, 2)
 
-    def average_clustering_coefficient(self, graph):
-        total = 0
-        for each_node in graph.get_all_nodes():
-            total+= self.local_clustering_coefficient(graph,each_node)
-        return round(total/self.node_count(graph),2)
 
-    def min_cut_max_flow(self,graph,source,sink,max_flow=None):
-        """
-        Finds the cut along the graph which contains the critical edges for the flow.
-        As shown in the max-flow min-cut theorem, the weight of this cut equals the maximum amount of flow
-        that can be sent from the source to the sink in the given network.
-        :param graph:
-        :param max_flow:
-        :return:
-        """
-        if max_flow is None:
-            max_flow = self.edmonds_karp(graph,source,sink)
+
+
+
+
+
