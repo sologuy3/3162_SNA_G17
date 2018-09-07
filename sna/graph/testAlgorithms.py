@@ -111,5 +111,6 @@ class BasicGraphTest(unittest.TestCase):
         sink = sample_graph_c.get_node_from_label('11')
         print(self.graph_algorithms.edmonds_karp(sample_graph_c,source,sink))
 
-
+    def test_local_clustering_coefficient(self):
+        print(self.graph_algorithms.local_clustering_coefficient(self.basic_graph,self.node1))
 

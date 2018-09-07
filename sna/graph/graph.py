@@ -152,7 +152,6 @@ class Graph:
 
         del self._graph[node]       # added this to remove node from graph fully YF 26/08
 
-
     def get_node_neighbors(self, node):
         """
         Return a nodes neighbors
@@ -160,6 +159,20 @@ class Graph:
         :return: set
         """
         return self._graph[node]
+
+    def get_incoming_neighbors(self, node):
+        """
+        Get the nodes for incoming edges for a given node
+        :param node:
+        :return:
+        """
+        incoming_neighbors = set()
+        for i_node in self._graph:
+            if node in self._graph[i_node]:
+                incoming_neighbors.add(i_node)
+
+        return incoming_neighbors
+
 
     def get_node_edges(self, node):
         """

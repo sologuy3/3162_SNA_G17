@@ -174,7 +174,22 @@ class GraphAlgorithms:
             residual_capacity, m = self.collect_flow(P,residual_capacity)
             print(m)
             flow += m
-        return flow
+        return flow,residual_capacity
+        # i'm returning residual capcity back because it would be nice to highlight the paths here
+
+
+    def local_clustering_coefficient(self,graph,node):
+        outgoing_neighbors = graph.get_node_neighbors(node)
+        incoming_neighbors = graph.get_incoming_neighbors(node)
+        all_neighbors = incoming_neighbors.union(outgoing_neighbors)
+        all_neighbors.add(node)
+        # find the number of links between these.
+        neighborhood_links = 0
+        for neighborhood_nodes in all_neighbors:
+            neighborhood_links += len(all_neighbors.intersection(graph.get_node_neighbors(neighborhood_nodes)))
+        return neighborhood_links
+
+
 
 
 

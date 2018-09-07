@@ -179,6 +179,9 @@ class BasicGraphTest(unittest.TestCase):
 
         self.assertNotIn(self.node1,self.graph_a._graph.keys())
 
+    def test_incoming_node_neighbors(self):
+        self.assertEqual(self.graph_a.get_incoming_neighbors(self.node1),{self.node2,self.node3})
+
     # todo deleteEdge
 
     # todo getNodeNeighbors
