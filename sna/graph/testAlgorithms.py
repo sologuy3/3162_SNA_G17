@@ -114,3 +114,5 @@ class BasicGraphTest(unittest.TestCase):
     def test_local_clustering_coefficient(self):
         print(self.graph_algorithms.local_clustering_coefficient(self.basic_graph,self.node1))
 
+    def test_global_clustering_coefficient(self):
+        print(self.graph_algorithms.average_clustering_coefficient(self.basic_graph))
