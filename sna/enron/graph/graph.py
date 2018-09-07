@@ -1,4 +1,4 @@
-from sna.graph.node import Node
+from enron.graph.node import Node
 
 class Graph:
     def __init__(self, name, modifiable=False):
@@ -178,7 +178,7 @@ class Graph:
     def get_all_nodes(self,stringify=False):
         """
         Return a list of all nodes in the graph
-        :return: List
+        :return: List[Node]
         """
 
         l = []
@@ -195,7 +195,7 @@ class Graph:
     def get_all_edges(self,stringify=False):
         """
         Return a list of all edges in the graph
-        :return: List
+        :return: List[Node, Node, Float]
         """
         l = []
 
@@ -227,3 +227,29 @@ class Graph:
         for node in self._graph.keys():
             if node.label is label:
                 return node
+
+    def dump_graph(self):
+        """
+        Convert a graph from internal representation to d3.js ready representation
+        The representation is a dictionary of the following format:
+
+        data = {'nodes':[{'id': 'one', 'group': 1},
+                        {'id': 'two', 'group': 1},
+                        {'id': 'three', 'group': 1}
+                        <!--- more nodes allowed --->],
+                'links':[{'source': 'one', 'target': 'two', 'value': 1},
+                        {'source': 'two', 'target': 'three', 'value': 1}
+                        <!--- more edges allowed --->}]
+                }
+
+        :type graph: Graph
+        """
+
+        data = {'nodes': [], 'links': []}
+        for node in self.get_all_nodes():
+            data['nodes'].append({'id': node.label, 'group': 1})
+
+        for edge in self.get_all_edges():
+            data['edges'].append({'source': edge[0].label, 'target': edge[1].label, 'value': edge[2]})
+
+        return data
