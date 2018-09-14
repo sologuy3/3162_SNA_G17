@@ -8,6 +8,7 @@ import math
 
 class GraphAlgorithms:
     def __init__(self):
+        self.time = 0
         pass
 
     @staticmethod
@@ -236,6 +237,7 @@ class GraphAlgorithms:
         # Mark all the vertices as not visited
         # and Initialize parent and visited,
         # and ap(articulation point) arrays
+        self.time = 0    # resetting this and it is incremented at each step of discovery
         node_count = self.node_count(graph)
         disc = [-1] * (node_count)  # the iteration in which DFS discovers a node
         low = [-1] * (node_count)
@@ -258,4 +260,13 @@ class GraphAlgorithms:
         Helper function for strongly connected components.
         :return:
         """
+        disc[u] = self.time
+        low[u] = self.time
+        self.time += 1
+        stackMember[u] = True
+        st.append(u)
+
+
+
+
 
