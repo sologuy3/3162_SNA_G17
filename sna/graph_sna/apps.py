@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class EnronConfig(AppConfig):
-    name = 'enron'
+    name = 'graph_sna'

@@ -2,11 +2,11 @@ import random
 
 from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
-from enron.models import Person
-from enron.graph.graph import Graph
+from graph_sna.models import Person
+from graph_sna.graph.graph import Graph
 
 def index(request):
-    return render(request, "enron/index.html", context={})
+    return render(request, "graph_sna/index.html", context={})
 
 
 def get_enron(request):

@@ -1,4 +1,4 @@
-from enron.graph.node import Node
+from graph_sna.graph.node import Node
 
 class Graph:
     def __init__(self, name, modifiable=False):
@@ -247,7 +247,7 @@ class Graph:
         Convert a graph from internal representation to d3.js ready representation
         The representation is a dictionary of the following format:
 
-        data = {'nodes':[{'id': 'one', 'group': 1},
+                            data = {'nodes':[{'id': 'one', 'group': 1},
                         {'id': 'two', 'group': 1},
                         {'id': 'three', 'group': 1}
                         <!--- more nodes allowed --->],

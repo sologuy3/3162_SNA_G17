@@ -7,7 +7,7 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sna.settings")
 import django
 django.setup()
 
-from enron.models import Person, Email
+from graph_sna.models import Person, Email
 from parsers.enron_parser import EnronParser
 import re
 import traceback
@@ -23,8 +23,8 @@ def main(emails_list):
             continue # Some emails don't have a to key?
         from_email = inmem_email['from']
 
-        # Don't include emails if they don't originate from enron
-        if "@enron" not in from_email:
+        # Don't include emails if they don't originate from graph_sna
+        if "@graph_sna" not in from_email:
             continue
 
         person, created = Person.objects.get_or_create(email_address=from_email)

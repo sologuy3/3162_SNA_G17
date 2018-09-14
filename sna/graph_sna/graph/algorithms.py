@@ -1,8 +1,8 @@
 """
 Collection of graph algorithms written for the Graph module.
 """
-from sna.graph.graph import Graph
-from sna.graph.node import Node
+from sna.graph_sna.graph.graph import Graph
+from sna.graph_sna.graph.node import Node
 import math
 
 

@@ -1,6 +1,6 @@
-from enron.graph.algorithms import GraphAlgorithms
-from enron.graph.graph import Graph
-from enron.graph.graph import Node
+from graph_sna.graph.algorithms import GraphAlgorithms
+from graph_sna.graph.graph import Graph
+from graph_sna.graph.graph import Node
 import unittest
 from graph import sample_graphs
 
@@ -116,3 +116,6 @@ class BasicGraphTest(unittest.TestCase):
 
     def test_global_clustering_coefficient(self):
         print(self.graph_algorithms.average_clustering_coefficient(self.basic_graph))
+
+
+    

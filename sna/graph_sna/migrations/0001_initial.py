@@ -32,21 +32,21 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='email',
             name='author',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='enron.Person'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='graph_sna.Person'),
         ),
         migrations.AddField(
             model_name='email',
             name='bccs',
-            field=models.ManyToManyField(related_name='bccs', to='enron.Person'),
+            field=models.ManyToManyField(related_name='bccs', to='graph_sna.Person'),
         ),
         migrations.AddField(
             model_name='email',
             name='ccs',
-            field=models.ManyToManyField(related_name='ccs', to='enron.Person'),
+            field=models.ManyToManyField(related_name='ccs', to='graph_sna.Person'),
         ),
         migrations.AddField(
             model_name='email',
             name='recipients',
-            field=models.ManyToManyField(related_name='recipients', to='enron.Person'),
+            field=models.ManyToManyField(related_name='recipients', to='graph_sna.Person'),
         ),
     ]
