@@ -2,7 +2,7 @@ from graph_sna.graph.algorithms import GraphAlgorithms
 from graph_sna.graph.graph import Graph
 from graph_sna.graph.graph import Node
 import unittest
-from graph import sample_graphs
+from graph_sna.graph import sample_graphs
 
 
 def initialise_sample_graph(sample_graph):
@@ -118,4 +118,3 @@ class BasicGraphTest(unittest.TestCase):
         print(self.graph_algorithms.average_clustering_coefficient(self.basic_graph))
 
 
-    

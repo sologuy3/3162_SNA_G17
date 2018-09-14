@@ -38,7 +38,7 @@
         .force("charge", d3.forceManyBody())
         .force("center", d3.forceCenter(width / 2, height / 2));
 
-    d3.json("get_enron.json", function (error, graph) {
+    d3.json("get_test_graph.json", function (error, graph) {
         if (error) throw error;
 
         var link = svg.append("g")
@@ -64,11 +64,18 @@
                 .on("drag", dragged)
                 .on("end", dragended));
 
+
+        var lables = node.append("text")
+            .text(function (d) {
+                return d.id;
+            })
+            .attr('x', 6)
+            .attr('y', 3);
+
         node.append("title")
             .text(function (d) {
                 return d.id;
             });
-
         simulation
             .nodes(graph.nodes)
             .on("tick", ticked);

@@ -264,6 +264,5 @@ class Graph:
             data['nodes'].append({'id': node.label, 'group': 1})
 
         for edge in self.get_all_edges():
-            data['edges'].append({'source': edge[0].label, 'target': edge[1].label, 'value': edge[2]})
-
+            data['links'].append({'source': edge[0].label, 'target': edge[1].label, 'value': edge[2]})
         return data
