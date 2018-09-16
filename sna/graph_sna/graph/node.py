@@ -12,9 +12,8 @@ class Node:
         # Do not access / modify directly
         self._neighbors = set()
 
-
         if neighbors is not None:
-            assert isinstance(neighbors, set) or isinstance(neighbors,list) , "Neighbors object is not a set or list"
+            assert isinstance(neighbors, set) or isinstance(neighbors, list), "Neighbors object is not a set or list"
             self.add_neighbor(*neighbors)
 
         self.label = label
@@ -27,16 +26,14 @@ class Node:
     def __setitem__(self, key, value):
         self.attributes[key] = value
 
-
-    def __str__(self):
+    def __repr__(self):
         return str(self.label)
 
+    def __str__(self):
+        return "Name: {} | Neighbors: [{}] | Attributes: {{{}}})".format(self.label, self.get_neighbors(stringify=True),
+                                                                         str(self.attributes))
 
-        #return "Name: {} | Neighbors: [{}] | Attributes: {{{}}})".format(self.label, self.get_neighbors(stringify=True),
-        #                                                                str(self.attributes))
-
-
-    def get_neighbors(self,stringify=False):
+    def get_neighbors(self, stringify=False):
         """
         External method to get neighbors list
         For internal neighbor retrieval use self._neighbors
@@ -55,9 +52,6 @@ class Node:
         else:
             return self._neighbors
 
-
-
-
     def add_neighbor(self, *neighbors):
         """
         Add an arbitrary argument list of neighbors to the node
@@ -69,8 +63,8 @@ class Node:
             assert isinstance(potential_neighbor, Node), "{} is not a node".format(potential_neighbor)
             self._neighbors.add(potential_neighbor)
 
-        # TODO: This should also update the Graph
-
+        # This should also update the Graph
+        # Graph will manage this - YF
 
     def delete_neighbor(self, neighbor):
         """
@@ -82,4 +76,3 @@ class Node:
         assert neighbor in self._neighbors, "{} not in neighbors set".format(str(neighbor))
 
         self._neighbors.remove(neighbor)
-
