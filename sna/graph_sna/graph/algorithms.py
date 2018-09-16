@@ -1,14 +1,17 @@
 """
 Collection of graph algorithms written for the Graph module.
 """
-from graph_sna.graph.graph import Graph
-from graph_sna.graph.node import Node
+from sna.graph_sna.graph.graph import Graph
+from sna.graph_sna.graph.node import Node
 import math
 
 
 class GraphAlgorithms:
     def __init__(self):
+        # the following are variables used for the SCC algorithm
         self.time = 0
+        self.current = []
+        self.components = []
         pass
 
     @staticmethod
@@ -197,8 +200,8 @@ class GraphAlgorithms:
     def average_clustering_coefficient(self, graph):
         total = 0
         for each_node in graph.get_all_nodes():
-            total+= self.local_clustering_coefficient(graph,each_node)
-        return round(total/self.node_count(graph),2)
+            total += self.local_clustering_coefficient(graph, each_node)
+        return round(total / self.node_count(graph), 2)
 
     def min_cut_max_flow(self, graph, source, sink):
         """
@@ -210,21 +213,13 @@ class GraphAlgorithms:
         :return:
         """
         min_cut = set()
-        flow, residual_capacity = self.edmonds_karp(graph,source,sink)
+        flow, residual_capacity = self.edmonds_karp(graph, source, sink)
         for key, value in residual_capacity.items():
             if value is 0:
                 min_cut.add(key)
         return min_cut
 
-    def weakly_connected_components(self,graph):
-        """
-        A weakly connected component is a maximal subgraph of a directed graph such that for every pair of vertices u,v;
-        in the subgraph, there is an undirected path from u to v and a directed path from v to u.
-        :param graph:
-        :return:
-        """
-
-    def strongly_connected_components(self,graph):
+    def strongly_connected_components(self, graph):
         """
         https://www.geeksforgeeks.org/tarjan-algorithm-find-strongly-connected-components/
         A strongly connected component is maximal subgraph of a directed graph such that for every pair of vertices  u, v
@@ -237,25 +232,24 @@ class GraphAlgorithms:
         # Mark all the vertices as not visited
         # and Initialize parent and visited,
         # and ap(articulation point) arrays
-        self.time = 0    # resetting this and it is incremented at each step of discovery
+        self.time = 0  # resetting this and it is incremented at each step of discovery
         node_count = self.node_count(graph)
-        disc = [-1] * (node_count)  # the iteration in which DFS discovers a node
-        low = [-1] * (node_count)
-        stackMember = [False] * (node_count)
+        disc, low, stackMember = {}, {}, {}
+        for i in graph.get_all_nodes():
+            disc[i] = -1
+            low[i] = -1
+            stackMember[i] = False
         st = []
 
         # Call the recursive helper function
         # to find articulation points
         # in DFS tree rooted with vertex 'i'
-        for i in range(node_count):
+        for i in graph.get_all_nodes():
             if disc[i] == -1:
-                self.SCC_aux(i, low, disc, stackMember, st)
+                self.SCC_aux(i, low, disc, stackMember, st, graph)
+        print(self.components)
 
-
-
-
-
-    def SCC_aux(self,u, low, disc, stackMember, st):
+    def SCC_aux(self, u, low, disc, stackMember, st, graph):
         """
         Helper function for strongly connected components.
         :return:
@@ -265,8 +259,26 @@ class GraphAlgorithms:
         self.time += 1
         stackMember[u] = True
         st.append(u)
+        # Go through all vertices adjacent to this
+        neighbors = graph.get_node_neighbors(u)
+        for v in neighbors:  # iterating through all the outgoing edges of this node
+            if disc[v] == -1:
+                self.SCC_aux(v, low, disc, stackMember, st, graph)
+                low[u] = min(low[u], low[v])
+            elif stackMember[v]:
+                low[u] = min(low[u], disc[v])
 
+        w = -1  # To store stack extracted vertices
+        if low[u] == disc[u]:
+            while w != u:
+                w = st.pop()
+                self.add_to_current_component(w)
+                stackMember[w] = False
+            self.new_component()
 
+    def add_to_current_component(self, node):
+        self.current.append(node)
 
-
-
+    def new_component(self):
+        self.components.append(self.current)
+        self.current = []
