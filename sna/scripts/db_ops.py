@@ -3,16 +3,12 @@ import json
 import os
 import pdb
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sna.settings")
-import django
-django.setup()
-
 from graph_sna.models import Person, Email
-from parsers.enron_parser import EnronParser
+from graph_sna.parsers.enron_parser import EnronParser
 import re
 import traceback
 
-def main(emails_list):
+def main(emails):
 
 
     for i, inmem_email in enumerate(emails):
@@ -24,7 +20,7 @@ def main(emails_list):
         from_email = inmem_email['from']
 
         # Don't include emails if they don't originate from graph_sna
-        if "@graph_sna" not in from_email:
+        if "@enron" not in from_email:
             continue
 
         person, created = Person.objects.get_or_create(email_address=from_email)
@@ -48,10 +44,13 @@ def main(emails_list):
             email.author = person
         try:
             recipient, created = Person.objects.get_or_create(email=db_email.to[0])
+            author, created = Person.objects.get_or_create(email=from_email)
             email.recipients.add(recipient)
+            email.author = author
         except Exception as e:
             traceback.print_exc()
             pdb.set_trace()
+
         email.save()
 
 
@@ -78,7 +77,7 @@ def clean(email):
 def get_emails_from_json():
 
     json_data = ""
-    with open("parsers/data.json") as read:
+    with open("graph_sna/parsers/data.json") as read:
         json_data = read.read()
 
     return json.loads(json_data)
@@ -95,7 +94,7 @@ def save_json():
 
     return emails.emails
 
-if __name__ == "__main__":
+def run():
 
     load = True
 
