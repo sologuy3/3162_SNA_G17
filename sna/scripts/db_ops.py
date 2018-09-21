@@ -1,18 +1,16 @@
 import datetime
 import json
-import os
-import pdb
 
 from graph_sna.models import Person, Email
 from graph_sna.parsers.enron_parser import EnronParser
-import re
-import traceback
+
 
 def main(emails):
-
-
     for i, inmem_email in enumerate(emails):
-        print(str(round(100*i/len(emails),2)) + "% done")
+
+        if i % 1000 == 0:
+            print(str(round(100*i/len(emails),2)) + "% done")
+
         inmem_email = clean(inmem_email)
 
         if "To" not in inmem_email:
@@ -23,7 +21,7 @@ def main(emails):
         if "@enron" not in from_email:
             continue
 
-        person, created = Person.objects.get_or_create(email_address=from_email)
+        author, created = Person.objects.get_or_create(email_address=from_email)
 
         db_email = Email()
         db_email.id = inmem_email['id']
@@ -35,23 +33,19 @@ def main(emails):
         datestring = inmem_email['datetime'].split(" (")[0]
         db_email.time_sent = datetime.datetime.strptime(datestring, "%a, %d %b %Y %H:%M:%S %z")
 
-        email, created = Email.objects.get_or_create(id=db_email.id,time_sent=db_email.time_sent, author=person)
-
+        email, created = Email.objects.get_or_create(id=db_email.id,
+                                                     time_sent=db_email.time_sent,
+                                                     author=author)
+        #print(from_email, db_email.to[0])
         if created:
-            if inmem_email['datetime'][6] == " ":  # Check if DOM < 10 by seeing if 7th character is a space
-                inmem_email['datetime'] = inmem_email['datetime'].replace(", ", ", 0")  # Make day-of-month 0 padded
-            inmem_email['datetime'] = inmem_email['datetime'].split(" (")[0]
-            email.author = person
-        try:
-            recipient, created = Person.objects.get_or_create(email=db_email.to[0])
-            author, created = Person.objects.get_or_create(email=from_email)
-            email.recipients.add(recipient)
+            email.time_sent=db_email.time_sent
             email.author = author
-        except Exception as e:
-            traceback.print_exc()
-            pdb.set_trace()
-
-        email.save()
+            # db_email.to[0] format is "john@enron.com,kat@enron.com," etc
+            recipients = [recipient for recipient in db_email.to[0].split(',') if "@enron" in recipient]
+            for recipient in recipients:
+                recipient, created = Person.objects.get_or_create(email=recipient)
+                email.recipients.add(recipient)
+                email.save()
 
 
 def clean(email):

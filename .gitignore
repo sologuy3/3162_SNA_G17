@@ -7,12 +7,18 @@
 *.pyc
 
 ### Hidden directories (eg .env) ignored
+.itayenv
 
+# DB stuff - for now.
+
+
+*.sqlite3
+*-journal
 
 ### Json data files
 
 *.json
-
+*.
 
 ### JetBrains template
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio and Webstorm
