@@ -1,4 +1,4 @@
-import csv
+import csv,json
 from sna.graph_sna.graph.graph import Graph
 from sna.graph_sna.graph.graph import Node
 
@@ -94,6 +94,8 @@ if __name__ == "__main__":
     reddit.parse()
 
     graph = reddit.generate_graph()
+
     with open('redditdump','w+') as redditdump:
-        redditdump.write(str(graph.dump_graph()))
+        redditdump.write(json.dumps(graph.dump_graph(weight_threshold=graph.get_threshold(25))))
+
 
