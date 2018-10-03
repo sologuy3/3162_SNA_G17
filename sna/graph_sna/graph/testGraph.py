@@ -1,7 +1,7 @@
 import unittest
 
-from sna.graph.graph import Graph
-from sna.graph.node import Node
+from graph_sna.graph.graph import Graph
+from graph_sna.graph.node import Node
 
 
 class BasicGraphTest(unittest.TestCase):
@@ -182,6 +182,10 @@ class BasicGraphTest(unittest.TestCase):
     def test_incoming_node_neighbors(self):
         self.assertEqual(self.graph_a.get_incoming_neighbors(self.node1),{self.node2,self.node3})
 
+    def test_thresholding(self):
+        self.graph_a.add_edge(self.node1,self.node3,4)
+        self.graph_a.add_edge(self.node1,self.node2,2)
+        print(self.graph_a.get_threshold(25))
     # todo deleteEdge
 
     # todo getNodeNeighbors

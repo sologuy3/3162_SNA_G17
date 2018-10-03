@@ -1,4 +1,5 @@
 from graph_sna.graph.node import Node
+import numpy
 
 class Graph:
     def __init__(self, name, modifiable=False):
@@ -242,7 +243,7 @@ class Graph:
             if node.label is label:
                 return node
 
-    def dump_graph(self):
+    def dump_graph(self, weight_threshold=0):
         """
         Convert a graph from internal representation to d3.js ready representation
         The representation is a dictionary of the following format:
@@ -260,9 +261,30 @@ class Graph:
         """
 
         data = {'nodes': [], 'links': []}
-        for node in self.get_all_nodes():
-            data['nodes'].append({'id': node.label, 'group': 1})
+        added_nodes = set()
+
 
         for edge in self.get_all_edges():
-            data['links'].append({'source': edge[0].label, 'target': edge[1].label, 'value': edge[2]})
+            if edge[2] > weight_threshold:
+                data['links'].append({'source': edge[0].label, 'target': edge[1].label, 'value': edge[2]})
+                added_nodes.add(edge[1])
+                added_nodes.add(edge[0])
+
+        for node in self.get_all_nodes():
+            if node in added_nodes:
+                data['nodes'].append({'id': node.label, 'group': 1})
         return data
+
+    def get_threshold(self,threshold):
+        """
+        threshold - the percentage where to set the threshold.
+        Retursn a WEIGHT such that the weights above the given weight add up to the given threshold.
+        For example, setting threshold = 25% gives you a weight such that 25% of the edges of the graph are
+        higher than that weight.
+        :return:
+        """
+        weightlist = sorted(list(self._weights.values()))
+        index_cutoff = len(weightlist)*((100-threshold)/100)
+        return weightlist[int(index_cutoff)]
+
+
