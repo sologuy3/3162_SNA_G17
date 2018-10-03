@@ -7,9 +7,8 @@ Welcome to CompSci17_SNA's documentation!
 =========================================
 
 
-.. automodule:: graph
+.. automodule:: graph_sna
    :members:
-.. automodule:: graph.node
 
 ..autosummary::
      :toctree: stubs
