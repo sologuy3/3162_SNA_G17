@@ -50,8 +50,189 @@
 <div class="section" id="graph-testnode-module">
 <h2>graph.testNode module<a class="headerlink" href="#graph-testnode-module" title="Permalink to this headline">¶</a></h2>
 </div>
-<div class="section" id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-graph">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-graph" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="graph.Graph">
+<em class="property">class </em><code class="descclassname">graph.</code><code class="descname">Graph</code><span class="sig-paren">(</span><em>name</em>, <em>modifiable=False</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">object</span></code></p>
+<dl class="method">
+<dt id="graph.Graph.add_edge">
+<code class="descname">add_edge</code><span class="sig-paren">(</span><em>node1</em>, <em>node2</em>, <em>weight=1</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.add_edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an edge directed from node1 towards node2
+:type node1: Node
+:type node2: Node
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.add_node">
+<code class="descname">add_node</code><span class="sig-paren">(</span><em>node</em>, <em>neighbors=None</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.add_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a node to the graph with specified neighbors</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.delete_edge">
+<code class="descname">delete_edge</code><span class="sig-paren">(</span><em>node1</em>, <em>node2</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.delete_edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete an edge spanning from node1 to node2
+:type node1: Node
+:type node2: Node</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.delete_node">
+<code class="descname">delete_node</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.delete_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Obliterate a node out of existence.
+Deletes all edges spanning towards and away from it.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.dump_graph">
+<code class="descname">dump_graph</code><span class="sig-paren">(</span><em>weight_threshold=0</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.dump_graph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert a graph from internal representation to d3.js ready representation
+The representation is a dictionary of the following format:</p>
+<blockquote>
+<div><blockquote>
+<div><blockquote>
+<div>data = {&#8216;nodes&#8217;:[{&#8216;id&#8217;: &#8216;one&#8217;, &#8216;group&#8217;: 1},</div></blockquote>
+<p>{&#8216;id&#8217;: &#8216;two&#8217;, &#8216;group&#8217;: 1},
+{&#8216;id&#8217;: &#8216;three&#8217;, &#8216;group&#8217;: 1}
+&lt;!&#8212; more nodes allowed &#8212;&gt;],</p>
+</div></blockquote>
+<dl class="docutils">
+<dt>&#8216;links&#8217;:[{&#8216;source&#8217;: &#8216;one&#8217;, &#8216;target&#8217;: &#8216;two&#8217;, &#8216;value&#8217;: 1},</dt>
+<dd>{&#8216;source&#8217;: &#8216;two&#8217;, &#8216;target&#8217;: &#8216;three&#8217;, &#8216;value&#8217;: 1}
+&lt;!&#8212; more edges allowed &#8212;&gt;}]</dd>
+</dl>
+<p>}</p>
+</div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.get_all_edges">
+<code class="descname">get_all_edges</code><span class="sig-paren">(</span><em>stringify=False</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.get_all_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all edges in the graph
+:return: List[Node, Node, Float]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.get_all_nodes">
+<code class="descname">get_all_nodes</code><span class="sig-paren">(</span><em>stringify=False</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.get_all_nodes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of all nodes in the graph
+:return: List[Node]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.get_incoming_neighbors">
+<code class="descname">get_incoming_neighbors</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.get_incoming_neighbors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the nodes for incoming edges for a given node
+:param node:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.get_node_edges">
+<code class="descname">get_node_edges</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.get_node_edges" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return list of edges from node
+:type node: Node
+:return: List</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.get_node_from_label">
+<code class="descname">get_node_from_label</code><span class="sig-paren">(</span><em>label</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.get_node_from_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>O(n) method to find a node by its
+:param label:
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.get_node_neighbors">
+<code class="descname">get_node_neighbors</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.get_node_neighbors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a nodes neighbors
+:param node: Node
+:return: set</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.get_threshold">
+<code class="descname">get_threshold</code><span class="sig-paren">(</span><em>threshold</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.get_threshold" title="Permalink to this definition">¶</a></dt>
+<dd><p>threshold - the percentage where to set the threshold.
+Retursn a WEIGHT such that the weights above the given weight add up to the given threshold.
+For example, setting threshold = 25% gives you a weight such that 25% of the edges of the graph are
+higher than that weight.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.get_weight">
+<code class="descname">get_weight</code><span class="sig-paren">(</span><em>node1</em>, <em>node2</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.get_weight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the weight of an edge
+:type node1: Node
+:type node2: Node
+:return: float</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.has_edge">
+<code class="descname">has_edge</code><span class="sig-paren">(</span><em>node1</em>, <em>node2</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.has_edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if an edge exists directed from node1 towards node2</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.has_node">
+<code class="descname">has_node</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.has_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns wether the node is present in the graph
+:type node: Node</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.update_edge">
+<code class="descname">update_edge</code><span class="sig-paren">(</span><em>node1</em>, <em>node2</em>, <em>new_weight</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.update_edge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the value of a weight in the graph
+:type node1: Node
+:type node2: Node
+:type new_weight: float</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.Graph.update_node">
+<code class="descname">update_node</code><span class="sig-paren">(</span><em>old_node</em>, <em>new_node</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.Graph.update_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace a node with another node in its place</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 </div>
 
@@ -68,7 +249,7 @@
 <li><a class="reference internal" href="#graph-graph-module">graph.graph module</a></li>
 <li><a class="reference internal" href="#graph-node-module">graph.node module</a></li>
 <li><a class="reference internal" href="#graph-testnode-module">graph.testNode module</a></li>
-<li><a class="reference internal" href="#module-contents">Module contents</a></li>
+<li><a class="reference internal" href="#module-graph">Module contents</a></li>
 </ul>
 </li>
 </ul>
