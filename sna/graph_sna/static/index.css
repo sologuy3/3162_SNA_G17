@@ -1,0 +1,61 @@
+/* Make the chart container fill the page using CSS. */
+#chart {
+    position:fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1
+}
+
+body > div.NavigationDiv > ul {
+    list-style-type: none;
+    background-color: transparent;
+    position:relative;
+    display:inline-block;
+    text-align: center;
+    padding-right:75px;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+body > div.NavigationDiv > ul > li {
+    float: left;
+    position:relative;
+}
+
+body > div.NavigationDiv > ul > li > form > button {
+    font-family:"Roboto","HelveticaNeue","Helvetica Neue",sans-serif;
+    display: inline-block;
+    color: #37b7fb;
+    background-color: #f3fdff;
+    text-align: center;
+    padding: 10px 25px;
+    text-decoration: none;
+    alignment:center;
+    border: none;
+    opacity: 0.7;
+    filter: alpha(opacity=70); /* For IE8 and earlier */
+}
+
+/* Change the link color to #111 (black) on hover */
+body > div.NavigationDiv > ul > li > form > button:hover {
+    background-color: #37b7fb;
+    color: white;
+    opacity: 0.9;
+    filter: alpha(opacity=90); /* For IE8 and earlier */
+
+}
+
+.links line {
+  stroke: #999;
+  stroke-opacity: 0.6;
+}
+
+.nodes circle {
+  stroke: #fff;
+  stroke-width: 0.2px;
+}
+
+
+

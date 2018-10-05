@@ -1,4 +1,4 @@
-import random
+import random, json
 
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -30,4 +30,5 @@ def get_test_graph(request):
     gc = initialise_sample_graph(graph_c)
     assert isinstance(gc, Graph)
     dump = gc.dump_graph()
-    return JsonResponse(dump)
+    reddit = json.loads(open("redditdump").read())
+    return JsonResponse(reddit)
