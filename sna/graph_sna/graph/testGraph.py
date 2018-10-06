@@ -116,7 +116,7 @@ class BasicGraphTest(unittest.TestCase):
         node4 = Node()
         node5 = Node()
         # incorrectly passed node
-        self.assertRaises(AssertionError,self.graph_a.add_node,(node4,node5))
+        #self.assertRaises(AssertionError,self.graph_a.add_node,(node4,node5))
         self.assertRaises(AssertionError,self.graph_a.add_node,None)
         # incorrectly passed neighbors
         self.assertRaises(AssertionError,self.graph_a.add_node,node4,node5)
@@ -186,6 +186,10 @@ class BasicGraphTest(unittest.TestCase):
         self.graph_a.add_edge(self.node1,self.node3,4)
         self.graph_a.add_edge(self.node1,self.node2,2)
         print(self.graph_a.get_threshold(25))
+
+    def test_save_graph(self):
+        self.graph_a.load_save(self.graph_a.get_save())
+
     # todo deleteEdge
 
     # todo getNodeNeighbors

@@ -8,6 +8,39 @@
     z-index: -1
 }
 
+.actions:hover .actions_hover{
+    display:block;
+    min-width: inherit;
+    width: 100%;
+}
+
+.actions_hover{
+    display:none;
+}
+
+
+.load:hover .load_hover{
+    display:block;
+}
+
+.load_hover{
+    display:none;
+    min-width: inherit;
+    width: 100%;
+}
+
+
+.algorithms:hover .algorithms_hover{
+    display:block;
+}
+
+.algorithms_hover{
+    display:none;
+    min-width: inherit;
+    width: 100%;
+}
+
+
 body > div.NavigationDiv > ul {
     list-style-type: none;
     background-color: transparent;
@@ -22,6 +55,10 @@ body > div.NavigationDiv > ul {
 body > div.NavigationDiv > ul > li {
     float: left;
     position:relative;
+}
+
+button{
+    width:inherit;
 }
 
 body > div.NavigationDiv > ul > li > form > button {
@@ -56,6 +93,5 @@ body > div.NavigationDiv > ul > li > form > button:hover {
   stroke: #fff;
   stroke-width: 0.2px;
 }
-
 
 

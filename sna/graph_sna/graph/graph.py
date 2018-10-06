@@ -30,7 +30,7 @@ class Graph:
         :type node1: Node
         :type node2: Node
         """
-        assert isinstance(node1,Node) and isinstance(node2,Node), "Both node1 and node2 must be Node objects"
+        #assert isinstance(node1,Node) and isinstance(node2,Node), "Both node1 and node2 must be Node objects"
         assert self.has_node(node1), "node1 {} not present in graph".format(node1)
         assert self.has_node(node2), "node2 {} not present in graph".format(node2)
         #assert node2 in self._graph[node1], "No connection exists between node1 {} and node2 {}".format(node1, node2)
@@ -55,7 +55,7 @@ class Graph:
         """
         assert node != neighbors, "please add self edges by adding the node individually first, instead of add_node()"
         assert not self.has_node(node), "Node {} already exists in the graph".format(node)
-        assert isinstance(node,Node), "node needs to be a Node object"
+        #assert isinstance(node,Node), "node needs to be a Node object"
         # changed this to check if not None first - Yohan 24/08
         if neighbors is not None:
             assert isinstance(neighbors, set), "Neighbors iterable is not a set"
@@ -243,7 +243,7 @@ class Graph:
             if node.label is label:
                 return node
 
-    def dump_graph(self, weight_threshold=0):
+    def dump_graph(self, weight_threshold=0, degree_threshold=0):
         """
         Convert a graph from internal representation to d3.js ready representation
         The representation is a dictionary of the following format:
@@ -263,15 +263,21 @@ class Graph:
         data = {'nodes': [], 'links': []}
         added_nodes = set()
 
+        # node degree thresholding
+        filtered_nodes = set()
+        for node in self.get_all_nodes():
+            if len(node.get_neighbors())>degree_threshold:
+                filtered_nodes.add(node)
 
+        # edge weight thresholding
         for edge in self.get_all_edges():
-            if edge[2] > weight_threshold:
+            if edge[2] > weight_threshold and edge[0] in filtered_nodes and edge[1] in filtered_nodes:
                 data['links'].append({'source': edge[0].label, 'target': edge[1].label, 'value': edge[2]})
                 added_nodes.add(edge[1])
                 added_nodes.add(edge[0])
 
         for node in self.get_all_nodes():
-            if node in added_nodes:
+            if node in added_nodes and node in filtered_nodes:
                 data['nodes'].append({'id': node.label, 'group': 1})
         return data
 
@@ -286,5 +292,46 @@ class Graph:
         weightlist = sorted(list(self._weights.values()))
         index_cutoff = len(weightlist)*((100-threshold)/100)
         return weightlist[int(index_cutoff)]
+
+    def get_save(self):
+        import json
+        out_dict = {}
+        for node,neighbors in self._graph.items():
+            out_dict[node.save_repr()] = [x.save_repr() for x in neighbors]
+        out_links = {}
+        for edge_pair,weighting in self._weights.items():
+            key = edge_pair[0].save_repr()+'+:+'+edge_pair[1].save_repr()
+            out_links[key] = weighting
+
+        output = json.dumps(dict(nodes=out_dict,weights=out_links))
+        return output
+
+    def load_save(self,save):
+        import json
+        # reset
+        self._graph = {}
+        self._weights = {}
+
+        save_dict = json.loads(save)
+        nodes = save_dict['nodes']
+
+        label_map = {}
+
+        for node_label,neighbors in nodes.items():
+            crnt = Node(label=node_label)
+            label_map[node_label] = crnt
+            self.add_node(crnt)
+
+        weights = save_dict['weights']
+        
+        for pair, weight in weights.items():
+            (node,neighbor) = pair.split('+:+')
+            self.add_edge(label_map[node],label_map[neighbor],weight)
+
+
+
+
+
+
 
 

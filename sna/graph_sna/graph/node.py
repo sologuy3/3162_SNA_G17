@@ -76,3 +76,6 @@ class Node:
         assert neighbor in self._neighbors, "{} not in neighbors set".format(str(neighbor))
 
         self._neighbors.remove(neighbor)
+
+    def save_repr(self):
+        return str(self.label)

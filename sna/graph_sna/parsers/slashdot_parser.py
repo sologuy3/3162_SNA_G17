@@ -1,5 +1,6 @@
 from sna.graph_sna.graph.graph import Graph
 from sna.graph_sna.graph.node import Node
+from sna.graph_sna.graph.algorithms import GraphAlgorithms
 
 
 class FriendOrFoe:
@@ -36,11 +37,12 @@ class FriendOrFoe:
 
 
 
+
+
 if __name__ == "__main__":
     slashdata = FriendOrFoe()
     slashdata.parse()
     slashdot_graph = slashdata.generate_graph()
 
-    import json
-    with open('slashdump','w+') as slashdump:
-        slashdump.write(json.dumps(slashdot_graph.dump_graph()))
+    with open('slashsave','w+') as slashsave:
+        slashsave.write(slashdot_graph.get_save())

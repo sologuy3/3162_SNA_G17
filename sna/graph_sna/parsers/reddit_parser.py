@@ -90,12 +90,15 @@ class reposts:
 
 
 if __name__ == "__main__":
+    """
     reddit = reposts()
     reddit.parse()
 
     graph = reddit.generate_graph()
-
-    with open('redditdump','w+') as redditdump:
-        redditdump.write(json.dumps(graph.dump_graph(weight_threshold=graph.get_threshold(25))))
-
-
+    
+    with open('redditsave','w+') as redditsave:
+        redditsave.write(graph.get_save())
+    """
+    with open('redditsave') as redditsave:
+        graph = Graph('test')
+        graph.load_save(redditsave.read())
