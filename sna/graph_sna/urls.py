@@ -3,7 +3,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('get_enron.json', views.get_enron, name="get_enron"),
-    path('get_test_graph.json', views.get_test_graph, name="get_test_graph"),
+    path('reddit', views.load_reddit, name="load_reddit"),
+    path('slashdot', views.load_slashdot, name="load_slashdot"),
+    path('load_graph.json', views.load_graph, name="load_graph"),
+    path('reload',views.index, name='index'),
     path('', views.index, name='index'),
 ]

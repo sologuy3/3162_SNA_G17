@@ -272,7 +272,7 @@ class Graph:
         # edge weight thresholding
         for edge in self.get_all_edges():
             if edge[2] > weight_threshold and edge[0] in filtered_nodes and edge[1] in filtered_nodes:
-                data['links'].append({'source': edge[0].label, 'target': edge[1].label, 'value': edge[2]})
+                data['links'].append({'source': edge[0].label, 'target': edge[1].label, 'value': edge[2]-weight_threshold})
                 added_nodes.add(edge[1])
                 added_nodes.add(edge[0])
 

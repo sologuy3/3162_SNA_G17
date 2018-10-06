@@ -33,12 +33,6 @@ class FriendOrFoe:
             self.graph.add_edge(labelmap[edge[0]],labelmap[edge[1]])
         return self.graph
 
-
-
-
-
-
-
 if __name__ == "__main__":
     slashdata = FriendOrFoe()
     slashdata.parse()
