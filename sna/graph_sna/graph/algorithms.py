@@ -33,7 +33,6 @@ class GraphAlgorithms:
 
     def shortest_path_length(self, graph, source):
         # plan is to do it in O(mn) then optimise to O(m logn) using pqueue
-        assert isinstance(source, Node)
         q = set()
         dist = {}
         prev = {}

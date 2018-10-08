@@ -5,11 +5,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
+    <script src="{% static 'buttons.js' %}"></script>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 
 <body>
+<div id="loader" class="loader"></div>
 <div class="NavigationDiv">
     <ul>
         <li class="load">
@@ -34,34 +36,34 @@
         </li>
 
         <li class="algorithms">
-            <form action='algorithms' method='GET'>
+            <form onsubmit="return false;" method='GET'>
                 <button type='submit'>Graph Algorithms</button>
             </form>
-            <form class='algorithms_hover' action='node_count' method='POST'>
+            <form class='algorithms_hover' onsubmit="return callmymethod('node_count');" method='GET'>
                 <button type='submit'>Node Count</button>
             </form>
-            <form class='algorithms_hover' action='edge_count' method='POST'>
+            <form class='algorithms_hover' onsubmit="return callmymethod('edge_count');" method='GET'>
                 <button type='submit'>Edge Count</button>
             </form>
             <form class='algorithms_hover' action='shortest_path' method='POST'>
                 <button type='submit'>Shortest Path Length</button>
             </form>
-            <form class='algorithms_hover' action='minimum_average_path' method='POST'>
+            <form class='algorithms_hover' onsubmit="return callmymethod('minimum_average_path');" method='GET'>
                 <button type='submit'>Minimum Average Path</button>
             </form>
-            <form class='algorithms_hover' action='diameter' method='POST'>
+            <form class='algorithms_hover' onsubmit="return callmymethod('diameter');" method='GET'>
                 <button type='submit'>Diameter</button>
             </form>
-            <form class='algorithms_hover' action='mode_path_length' method='POST'>
+            <form class='algorithms_hover' onsubmit="return callmymethod('mode_path_length');" method='GET'>
                 <button type='submit'>Mode Path Length</button>
             </form>
-            <form class='algorithms_hover' action='average_edges_per_node' method='POST'>
+            <form class='algorithms_hover' onsubmit="return callmymethod('average_edges_per_node');" method='GET'>
                 <button type='submit'>Average Edges per Node</button>
             </form>
             <form class='algorithms_hover' action='dfs' method='POST'>
                 <button type='submit'>Depth First Search</button>
             </form>
-            <form class='algorithms_hover' action='discover_components' method='POST'>
+            <form class='algorithms_hover' onsubmit="return callmymethod('discover_components');" method='GET'>
                 <button type='submit'>Discover Components</button>
             </form>
             <form class='algorithms_hover' action='edmonds_karp' method='POST'>
@@ -70,13 +72,13 @@
             <form class='algorithms_hover' action='lcc' method='POST'>
                 <button type='submit'>Local Clustering Coefficient</button>
             </form>
-            <form class='algorithms_hover' action='acc' method='POST'>
+            <form class='algorithms_hover' onsubmit="return callmymethod('acc');" method='GET'>
                 <button type='submit'>Average Clusting Coefficient</button>
             </form>
             <form class='algorithms_hover' action='min_cut_max_flow' method='POST'>
                 <button type='submit'>Min Cut Max Flow</button>
             </form>
-            <form class='algorithms_hover' action='scc' method='POST'>
+            <form class='algorithms_hover' onsubmit="return callmymethod('general');" method='GET'>
                 <button type='submit'>Strongly Connected Components</button>
             </form>
 

@@ -117,4 +117,8 @@ class BasicGraphTest(unittest.TestCase):
     def test_global_clustering_coefficient(self):
         print(self.graph_algorithms.average_clustering_coefficient(self.basic_graph))
 
+    def test_save_graph_agls(self):
+        test_graph = Graph('test')
+        test_graph.load_save(self.basic_graph.get_save())
+        print(self.graph_algorithms.node_count(test_graph))
 

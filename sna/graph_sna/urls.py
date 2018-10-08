@@ -7,5 +7,6 @@ urlpatterns = [
     path('slashdot', views.load_slashdot, name="load_slashdot"),
     path('load_graph.json', views.load_graph, name="load_graph"),
     path('reload',views.index, name='index'),
+    path('algorithm', views.run_algorithm, name='algorithm'),
     path('', views.index, name='index'),
 ]
