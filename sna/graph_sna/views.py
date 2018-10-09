@@ -41,10 +41,11 @@ def load_reddit(request):
     global current
     with open('redditsave') as reddit_save:
         reddit_graph = Graph('reddit')
-        reddit_graph.load_save(reddit_save.read())
+        reddit_graph.load_save(reddit_save.read(),weight_threshold=2,degree_threshold=3)
         global current
         current = reddit_graph
-    dump = reddit_graph.dump_graph(weight_threshold=reddit_graph.get_threshold(10), degree_threshold=15)
+    print(reddit_graph.get_threshold(10))
+    dump = reddit_graph.dump_graph(weight_threshold=2, degree_threshold=15)
     with open('dump', 'w+') as dumpfile:
         dumpfile.write(json.dumps(dump))
 
@@ -112,9 +113,9 @@ def run_algorithm(request):
                 print('running '+alg)
                 response_string = "Average Edges per Node:{}".format(str(algrunner.average_edges_per_node(graph)))
 
-            if alg == 'discover_componenents':
+            if alg == 'discover_components':
                 print('running '+alg)
-                response_string = 'not implemented yet' # todo color components
+                response_string = str(algrunner.discover_components(graph))
 
             if alg == 'acc':
                 print('running '+alg)

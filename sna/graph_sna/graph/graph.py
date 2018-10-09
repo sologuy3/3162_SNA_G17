@@ -306,7 +306,7 @@ class Graph:
         output = json.dumps(dict(nodes=out_dict,weights=out_links))
         return output
 
-    def load_save(self,save):
+    def load_save(self,save, weight_threshold=0, degree_threshold=0):
         import json
         # reset
         self._graph = {}
@@ -318,15 +318,20 @@ class Graph:
         label_map = {}
 
         for node_label,neighbors in nodes.items():
-            crnt = Node(label=node_label)
-            label_map[node_label] = crnt
-            self.add_node(crnt)
+            if len(neighbors) >= degree_threshold:
+                crnt = Node(label=node_label)
+                label_map[node_label] = crnt
+                self.add_node(crnt)
 
         weights = save_dict['weights']
         
         for pair, weight in weights.items():
             (node,neighbor) = pair.split('+:+')
-            self.add_edge(label_map[node],label_map[neighbor],weight)
+            if weight >= weight_threshold:
+                try:
+                    self.add_edge(label_map[node],label_map[neighbor],weight)
+                except:
+                    pass    # todo handle exceptions here properly + check whether the nodes are alredy in the graph.
 
 
 
