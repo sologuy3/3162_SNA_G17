@@ -1,12 +1,39 @@
 # 3162_SNA_G17
 
+
+## QuickStart Guide 
+### Windows Users
+GUI Option ->
+Click on run_windows.bat
+
+This batch file will activate the Python 3.6 Virtual Environment and open the local web page using your default browser. It may take a few moments for the web server to initialize, if the page does not automatically initialize, reload the page after 10 seconds. 
+If you wish to use a different browser, the main page is at http://127.0.0.1/vis/
+
+### Linux Users
+
+
+
+
+## Using the GUI
+The navigation menu at the top has the following functionality.
+From left to right
+* Load Graph
+   * This allows switching between graph datasets. 
+   * Currently available are Enron, Reddit and Slashdot. 
+* Reload Graph
+    * This reloads the currently loaded graph
+* Graph Algorithms
+    * This allows use of the graph algorithms that are available. Some may take some time. 
+* Graph Actions
+    * This allows modification of the graph. *_To be Implemented_*
+
 ## Class Documentation
 
 Class documentation built by Sphynx and hosted by Jekyll
 
 https://sologuy3.github.io/3162_SNA_G17/
 
-# Project tree
+## Project tree
 
 .
  * [docs](./docs)
