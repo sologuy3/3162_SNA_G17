@@ -120,10 +120,11 @@ class GraphAlgorithms:
         return visited
 
     def discover_components(self, graph):
-        all_nodes = set(graph.get_all_nodes())
-        not_discovered = all_nodes.copy()
-        components = []
+        all_nodes = set(graph.get_all_nodes())      # all the nodes
+        not_discovered = all_nodes.copy()       # no nodes are currently discovered
+        components = []         # list of components.
         while not_discovered:
+            """
             currently_discovered = all_nodes - not_discovered
             current_source = not_discovered.pop()
             dfs_component = self.depth_first_search(graph, current_source)
@@ -135,6 +136,12 @@ class GraphAlgorithms:
             else:
                 components.append(dfs_component)
                 not_discovered -= dfs_component
+                """
+            current_source = not_discovered.pop()
+            dfs_component = self.depth_first_search(graph, current_source)
+            components.append(dfs_component)
+            not_discovered -= dfs_component
+
 
         return components
 
