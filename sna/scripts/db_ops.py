@@ -1,52 +1,83 @@
 import datetime
 import json
+import os
+import pdb
 
-from graph_sna.models import Person, Email
+import re
+
 from graph_sna.parsers.enron_parser import EnronParser
 
 
 def main(emails):
+    mail_dir = '../maildir/'
+    folders = os.listdir(path = mail_dir)
+    staff_emails = set("steven.harris@enron.com") # Add the one annoying edge case by hand...
+
+    to_regex = re.compile("From: ([a-zA-Z.]*@enron.com)")
+    better_to_regex = re.compile("From: ([a-zA-Z]*.[a-zA-Z]*@enron.com)")
+    for folder in folders:
+        path = mail_dir + "/" + folder
+        categories = os.listdir(path)
+        sent_folders = [category for category in categories if "sent" in category]
+        if len(sent_folders) == 0:
+            continue
+
+        # Go through sent folders / sent items and try find a source email address that matches the format
+        # john.smith@enron.com (rather than abbreviated formats eg jo.th@enron.com)
+        flag = False
+        email_addr = ""
+        for sent_folder in sent_folders:
+            for file in os.listdir(path + "/" + sent_folder):
+                infile = open(path + "/" + sent_folder + "/" + file).read()
+                match = to_regex.search(infile)
+                better_match = better_to_regex.search(infile)
+                if hasattr(match, "group"):
+                    if hasattr(better_match, "group"):
+                        staff_emails.add(better_match.group(1))
+                        print(better_match.group(1))
+                        flag = True
+                        break
+                    else:
+                        email_addr = match.group(1)
+            if flag:
+                break
+
+        # Add the best available one.
+        if not flag:
+            staff_emails.add(email_addr)
+
+
+    good_emails = []
+
     for i, inmem_email in enumerate(emails):
 
-        if i % 1000 == 0:
+        if i % 5000 == 0:
             print(str(round(100*i/len(emails),2)) + "% done")
 
         inmem_email = clean(inmem_email)
-
-        if "To" not in inmem_email:
-            continue # Some emails don't have a to key?
         from_email = inmem_email['from']
-
-        # Don't include emails if they don't originate from graph_sna
-        if "@enron" not in from_email:
+        if from_email not in staff_emails:
             continue
 
-        author, created = Person.objects.get_or_create(email_address=from_email)
+        if "To" not in inmem_email:
+            continue # Some emails don't have a `To` key?
 
-        db_email = Email()
-        db_email.id = inmem_email['id']
-        db_email.cc = inmem_email['X-cc']
-        db_email.bcc = inmem_email['X-bcc']
-        db_email.to = inmem_email['To']
-        db_email.subject = inmem_email['Subject']
+        to_emails = inmem_email['To']
+        valid_to_emails = [addr for addr in to_emails if addr in staff_emails and addr != '']
 
-        datestring = inmem_email['datetime'].split(" (")[0]
-        db_email.time_sent = datetime.datetime.strptime(datestring, "%a, %d %b %Y %H:%M:%S %z")
+        if len(valid_to_emails) == 0:
+            continue
+        else:
+            #print("{} -> {}".format(from_email, valid_to_emails))
+            inmem_email['To'] = json.dumps(valid_to_emails)
 
-        email, created = Email.objects.get_or_create(id=db_email.id,
-                                                     time_sent=db_email.time_sent,
-                                                     author=author)
-        #print(from_email, db_email.to[0])
-        if created:
-            email.time_sent=db_email.time_sent
-            email.author = author
-            # db_email.to[0] format is "john@enron.com,kat@enron.com," etc
-            recipients = [recipient for recipient in db_email.to[0].split(',') if "@enron" in recipient]
-            for recipient in recipients:
-                recipient, created = Person.objects.get_or_create(email=recipient)
-                email.recipients.add(recipient)
-                email.save()
+        good_emails.append(inmem_email)
 
+    print("Out of {} emails, {} were originating from and sent towards dataset staff".format(len(emails), len(good_emails)))
+
+
+    with open("enrondump", "w") as out:
+        out.write(json.dumps(good_emails))
 
 def clean(email):
     d = {}
@@ -73,7 +104,6 @@ def get_emails_from_json():
     json_data = ""
     with open("graph_sna/parsers/data.json") as read:
         json_data = read.read()
-
     return json.loads(json_data)
 
 

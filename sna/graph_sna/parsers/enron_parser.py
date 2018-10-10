@@ -13,6 +13,9 @@ import json
 import os
 import sys
 
+import re
+
+
 class EnronParser:
 
     def __init__(self):
@@ -23,6 +26,10 @@ class EnronParser:
         self.emp_count = 0                      # how many folders exist in the root directory
         self.progress = float(0)                # keep track of progress through the folders
         self.emails = []                        # all the parsed emails are stored here
+
+        path = '../maildir/'  # see assumption in docstring
+        employee_folders = os.listdir(path)  # grab a list of folders in the current directory
+
 
         for each in file_finder:                # iterate through each email
             email = {}                          # this is a dictionary that will contain the parsed email
@@ -61,8 +68,86 @@ class EnronParser:
                         email[prev] = [line]
 
                 email['body'] = ''              # don't save the body - not needed
+                email = self.clean(email)
                 self.emails.append(email)       # add the current email to the list of emails.
+        maildir = path
+        folders = os.listdir(path=maildir)
+        staff_emails = set("steven.harris@enron.com")  # Add the one annoying edge case by hand...
+        to_regex = re.compile("From: ([a-zA-Z]*.[a-zA-Z]*@enron.com)")
+        for folder in folders:
 
+            path = maildir + folder
+            categories = os.listdir(path)
+            sent_folders = [category for category in categories if "sent" in category]
+            if len(sent_folders) == 0:
+                continue
+
+            # Go through sent folders / sent items and try find a source email address that matches the format
+            # john.smith@enron.com
+            found_email = False
+            for sent_folder in sent_folders:
+                for file in os.listdir(path + "/" + sent_folder):
+                    infile = open(path + "/" + sent_folder + "/" + file).read()
+                    match = to_regex.search(infile)
+                    if hasattr(match, "group"):
+                        staff_emails.add(match.group(1))
+                        found_email = True
+                        break
+                if found_email:
+                    break
+
+
+        good_emails = []
+
+        for i, inmem_email in enumerate(self.emails):
+
+            if i % 5000 == 0:
+                print(str(round(100 * i / len(emails), 2)) + "% done")
+
+            inmem_email = self.clean(inmem_email)
+            from_email = inmem_email['from']
+            if from_email not in staff_emails:
+                continue
+
+            if "To" not in inmem_email:
+                continue  # Some emails don't have a `To` key?
+
+            to_emails = inmem_email['To']
+            valid_to_emails = [addr for addr in to_emails if addr in staff_emails and addr != '']
+
+            if len(valid_to_emails) == 0:
+                continue
+            else:
+                # print("{} -> {}".format(from_email, valid_to_emails))
+                inmem_email['To'] = json.dumps(valid_to_emails)
+
+            good_emails.append(inmem_email)
+
+        print("Out of {} emails, {} were originating from and sent towards {} dataset staff".format(len(self.emails),
+                                                                                                 len(good_emails),
+                                                                                                    len(staff_emails)))
+        with open("enrondump", "w") as out:
+            out.write(json.dumps(good_emails))
+
+    @staticmethod
+    def clean(email):
+        d = {}
+
+        if 'To' in email:
+            d['To'] = [to.replace(" ", "") for to in email['To']]
+
+        for k, v in email.items():
+            if k == "To":
+                continue
+            try:
+                if isinstance(v, list):
+                    d[k] = v[0].replace("\n", "")  # 0th index for first subject line?
+                else:
+                    d[k] = v.replace("\n", "")
+            except Exception as e:
+                print(e)
+
+        return d
 
     def pathfinder(self):
         """
@@ -137,3 +222,9 @@ class EnronParser:
 
     def get_email_json(self):
         return json.dumps(self.emails)
+
+if __name__ == "__main__":
+    ep = EnronParser()
+    emails = ep.get_email_json()
+
+

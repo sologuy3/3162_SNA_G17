@@ -14,7 +14,7 @@ class Graph:
         return self.name + ":\n\t"  + "\n\t".join([str(node) for node in self._graph.keys()]) + "\n----"
         # TODO: Graph string with node count / edge count etc
 
-    def has_node(self, node):   # todo bugfix - there's something funky here
+    def has_node(self, node):
 
         """
         Returns wether the node is present in the graph
@@ -22,7 +22,7 @@ class Graph:
         """
         return node in self._graph
 
-    def has_edge(self, node1, node2):   # todo bugfix - there's something funky here
+    def has_edge(self, node1, node2):
 
         """
         Returns True if an edge exists directed from node1 towards node2
@@ -93,7 +93,7 @@ class Graph:
         :type new_node: Node
         """
         assert self.has_node(old_node), "Old node {} not in graph".format(old_node)
-        assert not self.has_node(new_node), "New node {} not in graph".format(new_node)
+        assert not self.has_node(new_node), "New node {} in graph".format(new_node)
 
 
         # Update node-level data
