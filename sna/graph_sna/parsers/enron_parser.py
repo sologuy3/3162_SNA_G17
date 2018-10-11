@@ -11,17 +11,25 @@ todo - Imrpove to not hold ALL the emails in memory, i.e. turn into generator
 """
 import json
 import os
+import pdb
 import sys
 
 import re
 
+from graph_sna.graph.graph import Graph
+from graph_sna.graph.node import Node
+
 
 class EnronParser:
 
-    def __init__(self):
+    def __init__(self, loadfromdump=False):
         """
         Initialises the Enron Parser Object.
         """
+
+        if loadfromdump:
+            self.emails = json.loads(open('enrondump').read())
+            return
         file_finder = self.pathfinder()         # initialise this generator
         self.emp_count = 0                      # how many folders exist in the root directory
         self.progress = float(0)                # keep track of progress through the folders
@@ -102,7 +110,7 @@ class EnronParser:
         for i, inmem_email in enumerate(self.emails):
 
             if i % 5000 == 0:
-                print(str(round(100 * i / len(emails), 2)) + "% done")
+                print(str(round(100 * i / len(self.emails), 2)) + "% done")
 
             inmem_email = self.clean(inmem_email)
             from_email = inmem_email['from']
@@ -126,8 +134,42 @@ class EnronParser:
         print("Out of {} emails, {} were originating from and sent towards {} dataset staff".format(len(self.emails),
                                                                                                  len(good_emails),
                                                                                                     len(staff_emails)))
+        self.emails = good_emails
         with open("enrondump", "w") as out:
             out.write(json.dumps(good_emails))
+
+    def generate_graph(self):
+        """
+        To be used after the data has been saved to an enrondump file by the parser
+        :return:
+        """
+
+        graph = Graph('Enron')
+        emails = json.loads(open('enrondump').read())
+        for email in emails:
+            sender_email = email['from']
+            if graph.has_node_by_label(sender_email):
+                sender = graph.get_node_from_label(label=sender_email)
+            else:
+                sender = Node(label=sender_email)
+                graph.add_node(sender)
+            recipients = json.loads(email['To'])
+
+            for recipient_email in recipients:
+                if graph.has_node_by_label(recipient_email):
+                    recipient = graph.get_node_from_label(recipient_email)
+                else:
+                    recipient = Node(label=recipient_email)
+                    graph.add_node(recipient)
+
+                if not graph.has_edge(sender, recipient):
+                    graph.add_edge(sender, recipient, 1)
+                else:
+                    # Increment the weight by 1
+                    graph.update_edge(sender, recipient,
+                                      graph.get_weight(sender, recipient,) + 1)
+
+        return graph
 
     @staticmethod
     def clean(email):
@@ -224,7 +266,9 @@ class EnronParser:
         return json.dumps(self.emails)
 
 if __name__ == "__main__":
-    ep = EnronParser()
+    ep = EnronParser(True)
     emails = ep.get_email_json()
-
-
+    enron_graph = ep.generate_graph()
+    print(len(enron_graph.get_all_nodes()))
+    with open('enronsave','w+') as enronsave:
+        enronsave.write(enron_graph.get_save())

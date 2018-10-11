@@ -1,10 +1,11 @@
 from graph_sna.graph.node import Node
-import numpy
+import json
 
 class Graph:
     def __init__(self, name, modifiable=False):
         self._graph = {}
         self._weights = {}
+        self._labels = {}
         self.statistics = {}
         self.name = name
         self.modifiable = modifiable
@@ -14,13 +15,22 @@ class Graph:
         return self.name + ":\n\t"  + "\n\t".join([str(node) for node in self._graph.keys()]) + "\n----"
         # TODO: Graph string with node count / edge count etc
 
-    def has_node(self, node):
+    def has_node(self, node: Node):
 
         """
-        Returns wether the node is present in the graph
+        Returns wether the Node object is present in the graph
         :type node: Node
         """
         return node in self._graph
+
+
+    def has_node_by_label(self, node_label: str):
+
+        """
+        Returns wether the Node object is present in the graph
+        :type node_label: Label of the node
+        """
+        return node_label in self._labels
 
     def has_edge(self, node1, node2):
 
@@ -65,6 +75,8 @@ class Graph:
                 node.add_neighbor(neighbor)
         else:
             self._graph[node] = set()
+
+        self._labels[node.label] = node
 
             #for neighbor in neighbors:
             #    self.update_edge(node,neighbor,0)
@@ -235,13 +247,13 @@ class Graph:
 
     def get_node_from_label(self,label):
         """
-        O(n) method to find a node by its
+        O(1) method to find a node by its
         :param label:
         :return:
         """
-        for node in self._graph.keys():
-            if node.label is label:
-                return node
+        if self.has_node_by_label(label):
+            return self._labels[label]
+
 
     def dump_graph(self, weight_threshold=0, degree_threshold=0):
         """
@@ -294,7 +306,6 @@ class Graph:
         return weightlist[int(index_cutoff)]
 
     def get_save(self):
-        import json
         out_dict = {}
         for node,neighbors in self._graph.items():
             out_dict[node.save_repr()] = [x.save_repr() for x in neighbors]

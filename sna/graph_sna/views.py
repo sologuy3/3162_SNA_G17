@@ -21,20 +21,18 @@ def reddit(request):
     return render(request, "graph_sna/reddit.html", context={})
 
 
-def get_enron(request):
-    current = 'enron'
-    people = Person.objects.all()[:100]
-    data = {'nodes': [], 'links': []}
+def load_enron(request):
+    with open('enronsave') as enron_save:
+        enron_graph = Graph('enron')
+        enron_graph.load_save(enron_save.read())
+        global current
+        current = enron_graph
 
-    for person in people:
-        data['nodes'].append({'id': person.email_address, 'group': 1})
+    dump = enron_graph.dump_graph(weight_threshold=0, degree_threshold=0)
+    with open('dump', 'w+') as dumpfile:
+        dumpfile.write(json.dumps(dump))
 
-    for i in range(200):
-        data['links'].append({'source': random.choice(data['nodes'])['id'],
-                              'target': random.choice(data['nodes'])['id'],
-                              'value': 1})
-
-    return JsonResponse(data)
+    return render(request, "graph_sna/index.html", context={})
 
 
 def load_reddit(request):
@@ -125,4 +123,4 @@ def run_algorithm(request):
     return response
 
 
-load_reddit(None)  # todo default graph is this.
+load_enron(None)  # todo default graph is this.
