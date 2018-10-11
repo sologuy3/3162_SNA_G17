@@ -79,7 +79,7 @@ def run_algorithm(request):
         alg = request.GET['type']
         print(alg)
         valid_algorithms = ['node_count', 'edge_count', 'diameter', 'minimum_average_path', 'mode_path_length',
-                            'average_edges_per_node', 'discover_components', 'acc']
+                            'average_edges_per_node', 'discover_components', 'acc', 'scc']
 
         if alg in valid_algorithms:
             algrunner = GraphAlgorithms()  # initiliase graph algorithms class
@@ -118,6 +118,12 @@ def run_algorithm(request):
             if alg == 'acc':
                 print('running '+alg)
                 response_string = "Average Clustering Coefficient:{}".format(str(algrunner.average_clustering_coefficient(graph)))
+
+            if alg == 'scc':
+                print('running '+alg)
+                response_string = "Strongly Connected components:{}".format(str(algrunner.strongly_connected_components(graph)))
+
+
     response = HttpResponse(response_string)
     response['Access-Control-Allow-Origin'] = '*'  # in case we switch out the URL
     return response

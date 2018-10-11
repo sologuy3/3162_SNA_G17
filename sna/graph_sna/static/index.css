@@ -111,4 +111,32 @@ body > div.NavigationDiv > ul > li > form > button:hover {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
 }
+#input1{
+    font-family:"Roboto","HelveticaNeue","Helvetica Neue",sans-serif;
+    display: none;
+    color: #37b7fb;
+    background-color: #f3fdff;
+    text-align: center;
+    padding: 10px 25px;
+    text-decoration: none;
+    alignment:center;
+    border: none;
+    opacity: 0.8;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
 
+}
+
+#input2{
+    font-family:"Roboto","HelveticaNeue","Helvetica Neue",sans-serif;
+    display: none;
+    color: #37b7fb;
+    background-color: #f3fdff;
+    text-align: center;
+    padding: 10px 25px;
+    text-decoration: none;
+    alignment:center;
+    border: none;
+    opacity: 0.8;
+    filter: alpha(opacity=80); /* For IE8 and earlier */
+
+}

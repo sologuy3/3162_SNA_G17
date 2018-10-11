@@ -343,11 +343,3 @@ class Graph:
                     self.add_edge(label_map[node],label_map[neighbor],weight)
                 except:
                     pass    # todo handle exceptions here properly + check whether the nodes are alredy in the graph.
-
-
-
-
-
-
-
-

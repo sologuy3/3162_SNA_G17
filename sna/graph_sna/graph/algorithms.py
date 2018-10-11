@@ -253,7 +253,7 @@ class GraphAlgorithms:
         for i in graph.get_all_nodes():
             if disc[i] == -1:
                 self.SCC_aux(i, low, disc, stackMember, st, graph)
-        print(self.components)
+        return self.components
 
     def SCC_aux(self, u, low, disc, stackMember, st, graph):
         """

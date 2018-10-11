@@ -45,7 +45,7 @@
             <form class='algorithms_hover' onsubmit="return callmymethod('edge_count');" method='GET'>
                 <button type='submit'>Edge Count</button>
             </form>
-            <form class='algorithms_hover' action='shortest_path' method='POST'>
+            <form class='algorithms_hover' onsubmit="return showinputs('spl',2,'source','sink');" method='GET'>
                 <button type='submit'>Shortest Path Length</button>
             </form>
             <form class='algorithms_hover' onsubmit="return callmymethod('minimum_average_path');" method='GET'>
@@ -60,25 +60,25 @@
             <form class='algorithms_hover' onsubmit="return callmymethod('average_edges_per_node');" method='GET'>
                 <button type='submit'>Average Edges per Node</button>
             </form>
-            <form class='algorithms_hover' action='dfs' method='POST'>
+            <form class='algorithms_hover' onsubmit="return showinputs('dfs',1,'source');" method='GET'>
                 <button type='submit'>Depth First Search</button>
             </form>
             <form class='algorithms_hover' onsubmit="return callmymethod('discover_components');" method='GET'>
                 <button type='submit'>Discover Components</button>
             </form>
-            <form class='algorithms_hover' action='edmonds_karp' method='POST'>
+            <form class='algorithms_hover' onsubmit="return showinputs('ek',2,'source','sink');" method='GET'>
                 <button type='submit'>Edmonds Karp</button>
             </form>
-            <form class='algorithms_hover' action='lcc' method='POST'>
+            <form class='algorithms_hover' onsubmit="return showinputs('lcc',1,'node');" method='GET'>
                 <button type='submit'>Local Clustering Coefficient</button>
             </form>
             <form class='algorithms_hover' onsubmit="return callmymethod('acc');" method='GET'>
                 <button type='submit'>Average Clusting Coefficient</button>
             </form>
-            <form class='algorithms_hover' action='min_cut_max_flow' method='POST'>
+            <form class='algorithms_hover' onsubmit="return showinputs('mcmf',2,'source','sink');" method='GET'>
                 <button type='submit'>Min Cut Max Flow</button>
             </form>
-            <form class='algorithms_hover' onsubmit="return callmymethod('general');" method='GET'>
+            <form class='algorithms_hover' onsubmit="return callmymethod('scc');" method='GET'>
                 <button type='submit'>Strongly Connected Components</button>
             </form>
 
@@ -92,6 +92,17 @@
                 <button type='submit'>Blah</button>
             </form>
         </li>
+        <li>
+        <li class="input">
+                <input id="input1" type="text" name="input1"><br>
+                <input id="input2" type="text" name="input2"><br>
+        </li>
+
+                <li class="submit_input">
+            <form class='submit_input_class' onsubmit="return callmymethodwithinput();" method='GET'>
+                <button id="submit_button" type='submit' data-algtype="None">Submit Input</button>
+            </form></li>
+
     </ul>
 </div>
 
@@ -155,6 +166,11 @@
                 .text(function (d) {
                     return d.id;
                 });
+
+            node.on("click",function(){
+              fill_inputs(d3.select(this).select('text').text());
+            });
+
             simulation
                 .nodes(graph.nodes)
                 .on("tick", ticked);
@@ -210,6 +226,7 @@
             d.fx = null;
             d.fy = null;
         }
+
 
     </script>
 </div>
