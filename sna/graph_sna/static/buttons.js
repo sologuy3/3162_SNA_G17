@@ -24,7 +24,7 @@ function callmymethodwithinput(){
 
         const Http = new XMLHttpRequest();
         const url = 'http://127.0.0.1:8000/vis/algorithm?type='+algType+'in1='+input1+'in2='+input2;
-        Http.open("GET", url);
+        Http.open("POST ", url);
         Http.send();
         Http.onreadystatechange = (e) => {
             if (Http.readyState === 4){
