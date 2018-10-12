@@ -255,7 +255,7 @@ class Graph:
             return self._labels[label]
 
 
-    def dump_graph(self, weight_threshold=0, degree_threshold=0):
+    def dump_graph(self, weight_threshold=0, degree_threshold=0, color_components = None):
         """
         Convert a graph from internal representation to d3.js ready representation
         The representation is a dictionary of the following format:
@@ -288,9 +288,23 @@ class Graph:
                 added_nodes.add(edge[1])
                 added_nodes.add(edge[0])
 
-        for node in self.get_all_nodes():
-            if node in added_nodes and node in filtered_nodes:
-                data['nodes'].append({'id': node.label, 'group': 1})
+        if color_components is None:
+            for node in self.get_all_nodes():
+                if node in added_nodes and node in filtered_nodes:
+                    data['nodes'].append({'id': node.label, 'group': 1})
+        else:
+            mapping = {}
+            for i,component in enumerate(color_components):
+                group = i
+                for node in component:
+                    mapping[node] = group
+            for node in self.get_all_nodes():
+                print('coloring')
+                if node in added_nodes and node in filtered_nodes:
+                    data['nodes'].append({'id': node.label, 'group': mapping[node]})
+
+
+
         return data
 
     def get_threshold(self,threshold):

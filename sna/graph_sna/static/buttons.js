@@ -13,6 +13,20 @@ $.ajax({
     }
 });*/
 
+function callmymethod(myVal){
+        $('#loader').show();
+        const Http = new XMLHttpRequest();
+        const url = 'http://127.0.0.1:8000/vis/algorithm?type='+myVal;
+        Http.open("GET", url);
+        Http.send();
+        Http.onreadystatechange = (e) => {
+            if (Http.readyState === 4){
+                alert(Http.responseText);
+                $('#loader').hide();
+             }
+ };
+    return false;}
+
 
 
 function callmymethodwithinput(){
@@ -23,18 +37,17 @@ function callmymethodwithinput(){
 
 
         const Http = new XMLHttpRequest();
-        const url = 'http://127.0.0.1:8000/vis/algorithm?type='+algType+'in1='+input1+'in2='+input2;
-        Http.open("POST ", url);
+        const url = 'http://127.0.0.1:8000/vis/algorithm?type='+algType+'&in1='+input1+'&in2='+input2;
+        Http.open("POST", url);
         Http.send();
         Http.onreadystatechange = (e) => {
             if (Http.readyState === 4){
                 alert(Http.responseText);
                 $('#loader').hide();
-
-            }
-
-};
+             }
+ };
     return false;}
+
 
 function showinputs(alg,count,input1name,input2name){
 
@@ -55,24 +68,6 @@ function showinputs(alg,count,input1name,input2name){
     }
     return false;
 }
-
-function postalgorithmreq(algtype,in1,in2,){
-        $('#loader').show();
-        const Http = new XMLHttpRequest();
-        alert(algtype+in1+in2)
-        const url = 'http://127.0.0.1:8000/vis/algorithm?type='+algtype;
-        Http.open("POST", url);
-        Http.send();
-        Http.onreadystatechange = (e) => {
-            if (Http.readyState === 4){
-                alert(Http.responseText);
-                $('#loader').hide();
-
-            }
-            return false;
-
-};
-    return false;}
 
 function fill_inputs(myVal){
 

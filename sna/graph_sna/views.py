@@ -113,7 +113,7 @@ def run_algorithm(request):
 
             if alg == 'discover_components':
                 print('running '+alg)
-                response_string = str(algrunner.discover_components(graph))
+                response_string = str()
 
             if alg == 'acc':
                 print('running '+alg)
@@ -123,10 +123,71 @@ def run_algorithm(request):
                 print('running '+alg)
                 response_string = "Strongly Connected components:{}".format(str(algrunner.strongly_connected_components(graph)))
 
+    if request.method == "POST":
+        valid_algorithms = ['spl','dfs','ek','lcc','mcmf']
+        try:
+            algtype = request.GET['type']
+            in1 = request.GET['in1']
+            in2 = request.GET['in2']
+            print('alg: ' + algtype)
+            print('in1: ' + in1)
+            print('in2: ' + in2)
 
+            algrunner = GraphAlgorithms()  # initiliase graph algorithms class
+            assert(isinstance(current,Graph)), "No active graph found"
+            graph = current
+            print("Graph Loaded")
+
+            if algtype == 'None':
+                response_string = "You need to select an algorithm before submitting!"
+            elif algtype in valid_algorithms:
+                if algtype == 'spl':
+                    try:
+                        in1_node = graph.get_node_from_label(in1)
+                        response_string = str(algrunner.shortest_path_length(graph,in1_node))
+                    except Exception as err:
+                        response_string = str(err)
+
+                if algtype == 'dfs':
+                    try:
+                        in1_node = graph.get_node_from_label(in1)
+                        response_string = str(algrunner.shortest_path_length(graph,in1_node))
+                    except Exception as err:
+                        response_string = str(err)
+
+                if algtype == 'ek':
+                    try:
+                        in1_node = graph.get_node_from_label(in1)
+                        in2_node = graph.get_node_from_label(in2)
+                        response_string = str(algrunner.edmonds_karp(graph,in1_node,in2_node))
+                    except Exception as err:
+                        response_string = str(err)
+
+                if algtype == 'lcc':
+                    try:
+                        in1_node = graph.get_node_from_label(in1)
+                        response_string = str(algrunner.local_clustering_coefficient(graph,in1_node))
+                    except Exception as err:
+                        response_string = str(err)
+
+                if algtype == 'mcmf':
+                    try:
+                        in1_node = graph.get_node_from_label(in1)
+                        in2_node = graph.get_node_from_label(in2)
+                        response_string = str(algrunner.min_cut_max_flow(graph,in1_node,in2_node))
+                    except Exception as err:
+                        response_string = str(err)
+            else:
+                response_string = "App error: No input"
+
+        except KeyError:
+            response_string = ("You need to select an algorithm before submitting!")
+    print(response_string)
     response = HttpResponse(response_string)
     response['Access-Control-Allow-Origin'] = '*'  # in case we switch out the URL
     return response
 
 
-load_enron(None)  # todo default graph is this.
+
+
+load_enron(None)  # default graph is this.

@@ -45,7 +45,7 @@
             <form class='algorithms_hover' onsubmit="return callmymethod('edge_count');" method='GET'>
                 <button type='submit'>Edge Count</button>
             </form>
-            <form class='algorithms_hover' onsubmit="return showinputs('spl',2,'source','sink');" method='GET'>
+            <form class='algorithms_hover' onsubmit="return showinputs('spl',1,'source');" method='GET'>
                 <button type='submit'>Shortest Path Length</button>
             </form>
             <form class='algorithms_hover' onsubmit="return callmymethod('minimum_average_path');" method='GET'>
@@ -94,14 +94,15 @@
         </li>
         <li>
         <li class="input">
-                <input id="input1" type="text" name="input1"><br>
-                <input id="input2" type="text" name="input2"><br>
+            <input id="input1" type="text" name="input1"><br>
+            <input id="input2" type="text" name="input2"><br>
         </li>
 
-                <li class="submit_input">
+        <li class="submit_input">
             <form class='submit_input_class' onsubmit="return callmymethodwithinput();" method='GET'>
                 <button id="submit_button" type='submit' data-algtype="None">Submit Input</button>
-            </form></li>
+            </form>
+        </li>
 
     </ul>
 </div>
@@ -146,7 +147,7 @@
                 .selectAll("circle")
                 .data(graph.nodes)
                 .enter().append("circle")
-                .attr("r", 3)
+                .attr("r", 4)
                 .attr("fill", function (d) {
                     return color(d.group);
                 })
@@ -167,8 +168,8 @@
                     return d.id;
                 });
 
-            node.on("click",function(){
-              fill_inputs(d3.select(this).select('text').text());
+            node.on("click", function () {
+                fill_inputs(d3.select(this).select('text').text());
             });
 
             simulation
