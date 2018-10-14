@@ -60,22 +60,19 @@ class NodeTest(unittest.TestCase):
         self.assertEqual(many_node.get_neighbors(), set(neighbor_list),
                          "Passing a large Neighbor list at Node Init fails")
 
-    def neighbor_already_added(self):
+    def test_neighbor_already_added(self):
         """
         Tests situations where there is an attempt to add an existing neighbor.
         The expected handling of this is that there is no change to the neighbors as a Set is being used.
         """
         neighbor_a = Node()
         neighbor_b = Node()
-        neighbor_c = Node()
-        neighbor_d = Node()
-        neighbor_e = Node()
-        neighbors = {neighbor_a, neighbor_b, neighbor_c, neighbor_d, neighbor_e}
-        self.node_a.add_neighbor(neighbors)
-        previous_size = len(self.node_a.get_neighbors())
+        neighbors = [neighbor_a,neighbor_b]
+        neighbor_c = Node(neighbors)
+        previous_size = len(neighbor_c.get_neighbors())
         for each in neighbors:
-            self.node_a.add_neighbor(each)
-        self.assertEqual(previous_size, self.node_a.get_neighbors, "Adding existing neighbors adds to the neighbor set")
+            neighbor_c.add_neighbor(each)
+        self.assertEqual(previous_size, len(neighbor_c.get_neighbors()), "Adding existing neighbors adds to the neighbor set")
 
     def test_add_neighbor(self):
         """
