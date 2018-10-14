@@ -2,15 +2,32 @@
 
 
 ## QuickStart Guide 
-### Windows Users
+##### Windows Users
 GUI Option ->
 Click on run_windows.bat
+or use the command line to run the same file
+
+##### Linux Users
+Run the run_linx.sh script. 
+
 
 This batch file will activate the Python 3.6 Virtual Environment and open the local web page using your default browser. It may take a few moments for the web server to initialize, if the page does not automatically initialize, reload the page after 10 seconds. 
 If you wish to use a different browser, the main page is at http://127.0.0.1/vis/
 
-### Linux Users
 
+## Running Tests
+
+- Navigate to the root directory
+
+- Activate the Linux Python Virtual Environment using 
+
+        Linux: source .env/bin/activate
+
+        Windows: .env_windows\Scripts\activate
+
+- Use the following command to discover and run the unit tests
+
+        python -m unittest discover
 
 
 
