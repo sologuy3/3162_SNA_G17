@@ -26,12 +26,28 @@ class GraphAlgorithms:
             raise TypeError("Graph objected expected, got {} instead".format(str(type(graph))))
 
     def node_count(self, graph):
+        """
+        Returns the number of nodes in the graph. Regardless of whether they are connected or not.
+        :param graph:
+        :return:
+        """
         return len(graph.get_all_nodes())
 
     def edge_count(self, graph):
+        """
+        Returns the number of edges in the graph.
+        :param graph:
+        :return:
+        """
         return len(graph.get_all_edges())
 
     def shortest_path_length(self, graph, source):
+        """
+        An implementation of Dijkstra's algorithm which returns the shortest path length from a given node to all other nodes.
+        :param graph:
+        :param source:
+        :return:
+        """
         # plan is to do it in O(mn) then optimise to O(m logn) using pqueue
         q = set()
         dist = {}
@@ -72,6 +88,11 @@ class GraphAlgorithms:
         return min_node
 
     def minimum_average_path(self, graph):
+        """
+        Finds the average of the minimum paths of all the nodes.
+        :param graph:
+        :return:
+        """
         sum = 0
         count = 0
         for each_node in graph.get_all_nodes():
@@ -83,6 +104,11 @@ class GraphAlgorithms:
         return sum / count
 
     def diameter(self, graph):
+        """
+        The maximum minimum path that exists in the graph
+        :param graph:
+        :return:
+        """
         max = 0
         for each_node in graph.get_all_nodes():
             shortest_dist, prev = self.shortest_path_length(graph, each_node)
@@ -92,6 +118,11 @@ class GraphAlgorithms:
         return max
 
     def mode_path_length(self, graph):
+        """
+        The most common path length
+        :param graph:
+        :return:
+        """
         from collections import Counter
         all_shortest = []
         for each_node in graph.get_all_nodes():
@@ -100,6 +131,11 @@ class GraphAlgorithms:
         return Counter(all_shortest).most_common()[0]
 
     def median_path_length(self, graph):
+        """
+        The ‘central’ or median path length.
+        :param graph:
+        :return:
+        """
         from statistics import median
         all_shortest = []
         for each_node in graph.get_all_nodes():
@@ -108,9 +144,20 @@ class GraphAlgorithms:
         return median(all_shortest)
 
     def average_edges_per_node(self, graph):
+        """
+        An average of the degree of each node.
+        :param graph:
+        :return:
+        """
         return round(self.edge_count(graph) / self.node_count(graph), 2)
 
     def depth_first_search(self, graph, source):
+        """
+        An implementation of DFS. Primarily used for the discover_components algorithm.
+        :param graph:
+        :param source:
+        :return:
+        """
         visited, stack = set(), [source]
         while stack:
             vertex = stack.pop()
@@ -120,23 +167,15 @@ class GraphAlgorithms:
         return visited
 
     def discover_components(self, graph):
+        """
+        Uses DFS to identify components.
+        :param graph:
+        :return:
+        """
         all_nodes = set(graph.get_all_nodes())      # all the nodes
         not_discovered = all_nodes.copy()       # no nodes are currently discovered
         components = []         # list of components.
         while not_discovered:
-            """
-            currently_discovered = all_nodes - not_discovered
-            current_source = not_discovered.pop()
-            dfs_component = self.depth_first_search(graph, current_source)
-
-            if dfs_component.intersection(currently_discovered):
-                for i, each_discovered_component in enumerate(components):
-                    if each_discovered_component.intersection(dfs_component):
-                        components[i] = each_discovered_component.union(dfs_component)
-            else:
-                components.append(dfs_component)
-                not_discovered -= dfs_component
-                """
             current_source = not_discovered.pop()
             dfs_component = self.depth_first_search(graph, current_source)
             components.append(dfs_component)
@@ -174,7 +213,14 @@ class GraphAlgorithms:
         return residual_capacity_dict, flow
 
     def edmonds_karp(self, graph, source, sink):
-        # https://brilliant.org/wiki/edmonds-karp-algorithm/#algorithm-pseudo-code
+        """
+        An implementeation of Edmonds Karp's algorithm for
+        :param graph:
+        :param source:
+        :param sink:
+        :return:
+        Psuedocode used: https://brilliant.org/wiki/edmonds-karp-algorithm/#algorithm-pseudo-code
+        """
         flow = 0  # start with flow = 0
         residual_capacity = {}  # this dictionary keeps track of how much capacity is left in an edge
         for edge in graph.get_all_edges():  # all the edges start at full capacity
