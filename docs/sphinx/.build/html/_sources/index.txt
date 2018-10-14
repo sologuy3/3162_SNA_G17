@@ -10,6 +10,9 @@ Welcome to CompSci17_SNA's documentation!
 .. automodule:: graph_sna
    :members:
 
+.. automodule:: graph_sna.graph
+   :members:
+
 .. automodule:: graph_sna.graph.graph
    :members:
 
