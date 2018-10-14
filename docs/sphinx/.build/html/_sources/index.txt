@@ -10,6 +10,21 @@ Welcome to CompSci17_SNA's documentation!
 .. automodule:: graph_sna
    :members:
 
+.. automodule:: graph_sna.graph
+   :members:
+
+.. automodule:: algorithms
+   :members:
+
+.. automodule:: graph_sna.algorithms
+   :members:
+
+.. automodule:: node
+   :members:
+
+.. automodule:: graph_sna.node
+   :members:
+
 ..autosummary::
      :toctree: stubs
 
