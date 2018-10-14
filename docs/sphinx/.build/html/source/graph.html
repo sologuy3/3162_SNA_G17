@@ -91,7 +91,7 @@ Deletes all edges spanning towards and away from it.</p>
 
 <dl class="method">
 <dt id="graph.graph.Graph.dump_graph">
-<code class="descname">dump_graph</code><span class="sig-paren">(</span><em>weight_threshold=0</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.dump_graph" title="Permalink to this definition">¶</a></dt>
+<code class="descname">dump_graph</code><span class="sig-paren">(</span><em>weight_threshold=0</em>, <em>degree_threshold=0</em>, <em>color_components=None</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.dump_graph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a graph from internal representation to d3.js ready representation
 The representation is a dictionary of the following format:</p>
 <blockquote>
@@ -150,7 +150,7 @@ The representation is a dictionary of the following format:</p>
 <dl class="method">
 <dt id="graph.graph.Graph.get_node_from_label">
 <code class="descname">get_node_from_label</code><span class="sig-paren">(</span><em>label</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.get_node_from_label" title="Permalink to this definition">¶</a></dt>
-<dd><p>O(n) method to find a node by its
+<dd><p>O(1) method to find a node by its
 :param label:
 :return:</p>
 </dd></dl>
@@ -162,6 +162,11 @@ The representation is a dictionary of the following format:</p>
 :param node: Node
 :return: set</p>
 </dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.get_save">
+<code class="descname">get_save</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.get_save" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="graph.graph.Graph.get_threshold">
@@ -196,10 +201,22 @@ higher than that weight.
 
 <dl class="method">
 <dt id="graph.graph.Graph.has_node">
-<code class="descname">has_node</code><span class="sig-paren">(</span><em>node</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.has_node" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns wether the node is present in the graph
+<code class="descname">has_node</code><span class="sig-paren">(</span><em>node: graph_sna.graph.node.Node</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.has_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns wether the Node object is present in the graph
 :type node: Node</p>
 </dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.has_node_by_label">
+<code class="descname">has_node_by_label</code><span class="sig-paren">(</span><em>node_label: str</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.has_node_by_label" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns wether the Node object is present in the graph
+:type node_label: Label of the node</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.graph.Graph.load_save">
+<code class="descname">load_save</code><span class="sig-paren">(</span><em>save</em>, <em>weight_threshold=0</em>, <em>degree_threshold=0</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.graph.Graph.load_save" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="graph.graph.Graph.update_edge">
@@ -254,6 +271,11 @@ higher than that weight.
 For internal neighbor retrieval use self._neighbors
 :return: Neighbors list</p>
 </dd></dl>
+
+<dl class="method">
+<dt id="graph.node.Node.save_repr">
+<code class="descname">save_repr</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.node.Node.save_repr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 

@@ -10,19 +10,19 @@ Welcome to CompSci17_SNA's documentation!
 .. automodule:: graph_sna
    :members:
 
-.. automodule:: graph_sna.graph
+.. automodule:: graph_sna.graph.graph
    :members:
 
 .. automodule:: algorithms
    :members:
 
-.. automodule:: graph_sna.algorithms
+.. automodule:: graph_sna.graph.algorithms
    :members:
 
 .. automodule:: node
    :members:
 
-.. automodule:: graph_sna.node
+.. automodule:: graph_sna.graph.node
    :members:
 
 ..autosummary::
@@ -31,5 +31,3 @@ Welcome to CompSci17_SNA's documentation!
      Graph
 
 * :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
