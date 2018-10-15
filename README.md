@@ -51,6 +51,26 @@ Class documentation built by Sphynx and hosted by Jekyll
 https://sologuy3.github.io/3162_SNA_G17/
 
 ## Project tree
+The documentation sit under the /docs folder
+
+The .env and .env_windows folders are Python Virtual Environments.
+
+The /archive folder is for scrapped scripts and data
+
+The /sna folder is the main project. Under this folder
+- graph - contains the main graph, node and algorithms classes and the respective tests.
+- migrations - not used
+- static - contains static files used by the webserver, js and css.
+- parsers - contains the one-time parsers used to interpret and clean the data.
+- templates/graph_sna - contains the index.html file
+
+Files:
+- admin.py, apps.py, models.py, tests.py : are all django application files.
+- urls.py defines how API/webserver endpoints are handled
+- views.py contains functions that are called by url.py to handle web requests.
+
+#### Folder structure breakdown below.
+
 
 .
  * [docs](./docs)
