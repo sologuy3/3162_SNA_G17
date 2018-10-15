@@ -133,7 +133,7 @@ class BasicGraphTest(unittest.TestCase):
         self.assertIn(self.node3,self.graph_a._graph[self.node2])       # tests that it was added to _graph
         # adding multiple edges
         neighbor_list = []
-        for _ in range(1):
+        for _ in range(400):
             temp_node = Node()
             neighbor_list.append(temp_node)
             self.graph_a.add_node(temp_node)
@@ -151,7 +151,6 @@ class BasicGraphTest(unittest.TestCase):
             self.assertIn((neighbor, self.node3), self.graph_a._weights.keys())  # tests that it was added to weights
             self.assertIn(self.node3, self.graph_a._graph[neighbor])  # tests that it was added to _graph
 
-    # todo deleteNode
     def test_delete_node(self):
         """ test the delete_node method"""
         self.graph_a.add_edge(self.node1, self.node3)
