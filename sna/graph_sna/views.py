@@ -79,7 +79,7 @@ def run_algorithm(request):
         alg = request.GET['type']
         print(alg)
         valid_algorithms = ['node_count', 'edge_count', 'diameter', 'minimum_average_path', 'mode_path_length',
-                            'average_edges_per_node', 'discover_components', 'acc', 'scc']
+                            'average_edges_per_node', 'discover_components', 'acc', 'scc','holes']
 
         if alg in valid_algorithms:
             algrunner = GraphAlgorithms()  # initiliase graph algorithms class
@@ -122,6 +122,10 @@ def run_algorithm(request):
             if alg == 'scc':
                 print('running '+alg)
                 response_string = "Strongly Connected components:{}".format(str(algrunner.strongly_connected_components(graph)))
+
+            if alg == 'holes':
+                print('running '+alg)
+                response_string = "Structural Holes:{}".format(str(algrunner.structural_holes(graph)))
 
     if request.method == "POST":
         valid_algorithms = ['spl','dfs','ek','lcc','mcmf']

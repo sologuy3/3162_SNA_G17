@@ -334,3 +334,33 @@ class GraphAlgorithms:
     def new_component(self):
         self.components.append(self.current)
         self.current = []
+
+    def structural_holes(self,graph):
+
+        holes = []
+
+        # Start by defining the weight threshold for Strong ties vs Weak ties
+        mid_threshold = graph.get_threshold(10)
+
+        for node in graph.get_all_nodes():  # O(V)
+            strong_ties = []
+            node_neighbors = graph.get_node_neighbors(node)    # O(1)
+            for neighbor in node_neighbors:
+                if graph.get_weight(node,neighbor) >= mid_threshold:   # O(1)
+                    strong_ties.append(neighbor)
+
+            for each_neighbor in strong_ties:
+                for other_neighbor in strong_ties:
+                    if each_neighbor != other_neighbor:
+                        if not (graph.has_edge(other_neighbor,each_neighbor) or graph.has_edge(each_neighbor,other_neighbor)):
+                            if (node,(each_neighbor,other_neighbor)) not in holes:
+                                if (node,(other_neighbor,each_neighbor)) not in holes:
+                                    holes.append((node,(each_neighbor,other_neighbor)))
+
+        return holes
+
+
+
+
+
+

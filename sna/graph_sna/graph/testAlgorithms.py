@@ -122,3 +122,8 @@ class BasicGraphTest(unittest.TestCase):
         test_graph.load_save(self.basic_graph.get_save())
         print(self.graph_algorithms.node_count(test_graph))
 
+    def test_structural_holes(self):
+        sample_graph_c = initialise_sample_graph(sample_graphs.graph_c)
+
+        print(sample_graph_c.get_save())
+        print(self.graph_algorithms.structural_holes(sample_graph_c))
