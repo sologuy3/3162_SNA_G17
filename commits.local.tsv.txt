@@ -1,0 +1,143 @@
+eedc1d1	Yohan Francis	Tue Oct 16 21:21:35 2018	structural hole algorithm complete
+99050e6	Yohan Francis	Mon Oct 15 22:29:04 2018	General Project structure explanation added to quickstart Readme
+a4955da	Yohan Francis	Mon Oct 15 22:04:10 2018	fixed formatting, improved stress test to actually stress
+56304f8	Yohan Francis	Sun Oct 14 23:55:35 2018	fixed test in testNode
+8705ee7	Yohan Francis	Sun Oct 14 23:31:43 2018	committed all of windows env, it was only partly tracked.
+7f94a80	Yohan Francis	Sun Oct 14 23:30:53 2018	improved documentation fixed broken import statement removed testRegression.py
+3d45499	Yohan Francis	Sun Oct 14 23:30:00 2018	gave page a title
+4612eb9	Yohan Francis	Sun Oct 14 23:29:42 2018	udpated readme
+c309482	Yohan	Sun Oct 14 21:13:43 2018	docs updated
+f5055ef	Yohan	Sun Oct 14 21:11:25 2018	update docs
+baa380b	Yohan	Sun Oct 14 21:07:54 2018	update docs
+5204cf2	Yohan Francis	Fri Oct 12 14:40:07 2018	Merge remote-tracking branch 'origin/master'
+cf71312	Yohan Francis	Fri Oct 12 14:39:13 2018	algorithms that use inputs are working
+096a0be	ipla2	Fri Oct 12 12:54:21 2018	linux startup script
+70ae620	Yohan Francis	Thu Oct 11 21:49:01 2018	use post for inputs
+c538e40	Yohan Francis	Thu Oct 11 21:37:46 2018	frontend now capable of handling input
+10bd1c7	ipla2	Thu Oct 11 16:49:28 2018	enron graph
+2376e86	ipla2	Thu Oct 11 02:32:00 2018	only dump intra dataset emails
+bbe1c47	ipla2	Thu Oct 11 02:31:27 2018	only dump intra dataset emails
+4e98765	Yohan Francis	Tue Oct 9 23:50:29 2018	component discovery - bugfix
+bed405f	Yohan Francis	Tue Oct 9 23:18:33 2018	thresholding implemented into load_save and utilised in load_reddit
+cb65786	Yohan Francis	Tue Oct 9 22:07:50 2018	added some quickstart information to readme
+2bf4d5f	Yohan Francis	Mon Oct 8 23:47:58 2018	algorithm buttons (that do not require inputs) work!!! added loading graphic
+d968bd8	Yohan Francis	Sat Oct 6 20:10:43 2018	new env
+9f9a0e8	Yohan Francis	Sat Oct 6 18:37:48 2018	saves
+458a6f6	Yohan Francis	Sat Oct 6 18:37:21 2018	save graph to file
+5961667	Yohan Francis	Fri Oct 5 12:03:49 2018	new env
+5cc08e8	Yohan Francis	Fri Oct 5 11:47:15 2018	buttons, fullscreen graph, z index layering
+f28edb3	Yohan	Wed Oct 3 23:02:31 2018	docs update
+060d46c	Yohan	Wed Oct 3 23:00:47 2018	numpy
+de30a44	Yohan Francis	Wed Oct 3 21:53:33 2018	thresholding
+b165eee	Yohan Francis	Wed Oct 3 21:50:38 2018	enron parser
+787be1a	ipla2	Fri Sep 21 12:35:39 2018	everything
+e9c431d	Yohan Francis	Tue Sep 18 22:38:28 2018	Merge branch 'master' of https://github.com/sologuy3/3162_SNA_G17
+67fa351	Yohan Francis	Tue Sep 18 22:37:35 2018	slashdot and reddit data added. \n reddit data parsers complete
+fb223f4	ipla2	Sun Sep 16 22:16:33 2018	db insertion code
+6f92c26	Yohan	Sun Sep 16 16:52:36 2018	Merge branch 'master' of https://github.com/sologuy3/3162_SNA_G17
+62eb488	Yohan	Sun Sep 16 16:52:17 2018	docs updated
+3c6727b	sologuy3	Sun Sep 16 15:31:08 2018	project tree
+34a9fc5	sologuy3	Sun Sep 16 15:09:16 2018	added __repr__ override to node to improve useability
+d64b33e	sologuy3	Sun Sep 16 15:08:29 2018	algorithms.py complete
+a05a164	Yohan Francis	Fri Sep 14 15:33:52 2018	new env
+af55883	Yohan	Fri Sep 14 14:56:45 2018	re init env
+d169ff5	ipla2	Fri Sep 14 13:41:52 2018	yo
+3923f10	ipla2	Fri Sep 14 13:41:28 2018	removed hidden
+50263f1	ipla2	Fri Sep 14 12:26:38 2018	renamed app folder
+2b59acc	Yohan Francis	Fri Sep 14 12:10:00 2018	sync so we can restructure folders one last time
+0e1bf87	sologuy3	Wed Sep 12 23:11:24 2018	clustering algorithms
+8d842ac	Yohan Francis	Fri Sep 7 13:48:56 2018	sync
+3f90864	Yohan Francis	Fri Sep 7 13:44:40 2018	mincut
+e7ad4f7	ipla2	Fri Sep 7 13:28:34 2018	fixes
+1692de8	Yohan Francis	Fri Sep 7 13:21:19 2018	graph.py - added method to get incoming neighbors algorithms.py - added edmonds karp, clustering coefficient in progress tests updated to match
+e685399	ipla2	Fri Sep 7 13:09:58 2018	graph dumping
+6d69dab	Yohan	Thu Sep 6 23:15:04 2018	re-add env
+01c84c7	Yohan	Thu Sep 6 23:12:59 2018	fix namee
+4865764	Yohan Francis	Thu Sep 6 23:08:46 2018	windows environment
+c13df6e	Yohan Francis	Thu Sep 6 23:02:46 2018	batch files to run server and open webpage on windows
+c24da8d	Yohan Francis	Thu Sep 6 20:44:01 2018	Merge branch 'master' of https://github.com/sologuy3/3162_SNA_G17
+11bec4b	Yohan Francis	Thu Sep 6 20:43:42 2018	file move
+ce74770	ipla2	Thu Sep 6 20:37:06 2018	vis v0.001
+1486308	Yohan Francis	Thu Sep 6 20:10:19 2018	Merge branch 'master' of https://github.com/sologuy3/3162_SNA_G17
+8a0c9d2	Yohan Francis	Thu Sep 6 20:09:51 2018	flow algorithm and test
+4e7db10	ipla2	Thu Sep 6 20:06:57 2018	v0.0000001 vis
+7eeff15	ipla2	Thu Sep 6 20:05:36 2018	v0.0000001 vis
+1491a85	sologuy3	Sun Sep 2 22:28:06 2018	path length median algorithm and test
+be49359	sologuy3	Sun Sep 2 22:22:41 2018	path length mode algorithm and test
+d9404af	sologuy3	Sun Sep 2 19:42:47 2018	diameter test
+113cfa7	Yohan Francis	Sun Sep 2 19:33:28 2018	added diameter method to algs.py finished shortest path test.
+96f7ca0	Yohan Francis	Sun Sep 2 18:06:36 2018	algs.py: added mini-av-path graph.py: added get node via label node.py: removed __repr__ added sample_graphs.py for testing more graph tests added
+056a0ae	Yohan Francis	Fri Aug 31 14:19:18 2018	Algorithms unit tests. simplified string representation of node.
+b3b0578	Yohan Francis	Fri Aug 31 14:17:44 2018	implementation of algorithm with node+edge count and Djikstra's
+abdccbd	Yohan Francis	Fri Aug 31 14:17:03 2018	corrected graph to use default weight of 1
+cba3070	ipla2	Fri Aug 31 01:26:20 2018	saving data to db v1
+03236de	ipla2	Thu Aug 30 01:42:22 2018	graph tests pass
+bfa4b8f	Yohan Francis	Sun Aug 26 19:15:53 2018	Merge branch 'master' of https://github.com/sologuy3/3162_SNA_G17
+af379f9	Yohan Francis	Sun Aug 26 19:15:39 2018	more graph unit tests
+ede456a	Yohan Francis	Sun Aug 26 18:38:43 2018	fixed error due to modifying set while iterating in delete_node()
+d60f7ef	Yohan Francis	Sun Aug 26 18:33:50 2018	actually deletes nodes now ;)
+8f5d7e5	Yohan	Sun Aug 26 18:03:51 2018	docs updated with TOC
+b76773f	Yohan	Sun Aug 26 17:58:47 2018	new documentation
+3792b0d	Yohan Francis	Sun Aug 26 17:49:51 2018	improve jekyll
+5aabbfe	Yohan Francis	Sun Aug 26 17:48:59 2018	jekyll improvements
+95e52c0	Yohan Francis	Sun Aug 26 14:25:02 2018	improvement handling for self edges
+f4234b4	Yohan Francis	Sun Aug 26 14:06:41 2018	bugfix for string generation in node.get_neighbors()
+0140dae	Yohan Francis	Sun Aug 26 13:38:20 2018	imrovements to has_edge to behave as expected and better error handling
+b7c3edc	Yohan Francis	Fri Aug 24 14:22:48 2018	improved string representation
+ed0117f	Yohan Francis	Fri Aug 24 14:15:12 2018	improvements to string representation
+74e759a	Yohan Francis	Fri Aug 24 13:43:44 2018	few bugfixes while graph tests are written
+a74f2b4	ipla2	Fri Aug 24 13:17:23 2018	string rep for node?
+86fad17	Yohan Francis	Fri Aug 24 13:15:42 2018	Merge branch 'master' of https://github.com/sologuy3/3162_SNA_G17
+9fac64b	Yohan Francis	Fri Aug 24 13:13:40 2018	bugfix for when neighbors is None
+f67dfc7	ipla2	Fri Aug 24 12:53:24 2018	fixed encoding error
+78479c5	Yohan Francis	Fri Aug 24 12:50:28 2018	bugfix- handling files under the employee folder
+1c37ed9	ipla2	Fri Aug 24 12:23:45 2018	removed idea files
+49fc539	Yohan Francis	Sun Aug 19 23:24:44 2018	Node Unit tests complete
+17035cd	Yohan	Fri Aug 17 17:37:59 2018	documentation update
+fce33ac	Yohan Francis	Fri Aug 17 16:43:21 2018	fixed a few mistakes made during conflict fix
+55a41af	ipla2	Fri Aug 17 16:38:50 2018	tests for graph
+b000fd6	sologuy3	Fri Aug 17 16:36:55 2018	Merge pull request #3 from sologuy3/neighbor_as_set
+087a696	sologuy3	Fri Aug 17 16:36:42 2018	Merge branch 'master' into neighbor_as_set
+5f3f6b8	Yohan Francis	Fri Aug 17 16:28:53 2018	more test cases
+8a2193f	ipla2	Fri Aug 17 16:27:40 2018	test case for graphs set up
+5184459	ipla2	Fri Aug 17 16:14:36 2018	graph class v1
+ab72a57	Yohan Francis	Fri Aug 17 13:19:20 2018	changed node to fully handle and return sets
+b4096e4	ipla2	Wed Aug 15 11:01:25 2018	all node test cases pass
+0b54929	sologuy3	Fri Aug 10 20:03:44 2018	Merge pull request #2 from sologuy3/sphinx
+b65cf8f	Yohan	Fri Aug 10 20:02:49 2018	sphinx workign?
+407c9ce	Yohan	Fri Aug 10 17:50:20 2018	re-try with sphinx
+ac39f8b	Yohan	Fri Aug 10 17:44:00 2018	updated sphinx
+bc7b0c5	Yohan Francis	Fri Aug 10 17:25:45 2018	added some unittests
+021e348	Yohan Francis	Fri Aug 10 13:48:18 2018	skeleton for unittest
+d1a8099	Yohan Francis	Fri Aug 10 13:37:14 2018	Documented Enron Parser properly
+fe5cf7e	Yohan Francis	Fri Aug 10 13:19:36 2018	fixed enron parser
+866051e	ipla2	Mon Aug 6 16:40:48 2018	node class complete
+18e1f7e	Yohan	Sat Aug 4 19:50:40 2018	swphinx test
+5eeeee6	Yohan	Sat Aug 4 19:47:39 2018	sphinx test
+c4b8b7b	Yohan	Sat Aug 4 19:36:09 2018	sphinx test
+37734ca	Yohan	Sat Aug 4 19:26:42 2018	test documenting with sphinx
+dd98ac0	Yohan	Sat Aug 4 19:26:05 2018	test documenting with sphinx
+64f9b3f	Yohan Francis	Fri Aug 3 13:43:39 2018	sphinx documentation added to readme and file cleanup
+b1ccd02	Yohan Francis	Fri Aug 3 13:43:27 2018	sphinx documentation added to readme and file cleanup
+7e930ea	Yohan	Fri Aug 3 13:17:41 2018	sphinx files cleaned up and bash script added to build and move docs
+bb45eae	ipla2	Fri Aug 3 13:06:42 2018	Merge branch 'master' of github.com:sologuy3/3162_SNA_G17
+6286ec6	ipla2	Fri Aug 3 13:06:24 2018	Node class 4/6 methods implemented
+5bf7964	Yohan	Fri Aug 3 12:55:06 2018	index.html at root to keep jekyll happy
+9683f03	Yohan	Fri Aug 3 12:52:38 2018	Merge branch 'master' of https://github.com/sologuy3/3162_SNA_G17
+33882d1	Yohan	Fri Aug 3 12:52:13 2018	move sphinx to its own folder
+fe000e6	sologuy3	Fri Aug 3 12:45:00 2018	Set theme jekyll-theme-cayman
+b954a24	Yohan	Fri Aug 3 12:43:15 2018	git pushMerge branch 'master' of https://github.com/sologuy3/3162_SNA_G17
+69909ac	Yohan	Fri Aug 3 12:42:32 2018	iniial documentation test
+86dab7d	ipla2	Fri Aug 3 12:37:25 2018	created project src structure
+7ce3f06	ipla2	Fri Aug 3 12:27:38 2018	rename env to be hidden
+88bb624	ipla2	Fri Aug 3 12:26:00 2018	upgrade python 3.5 -> 3.7
+3a43415	ipla2	Fri Aug 3 12:23:31 2018	env
+deca134	Yohan Francis	Fri Aug 3 12:10:35 2018	restored original email parser from old repo
+c6490e4	ipla2	Tue Jul 31 22:05:23 2018	added management to the root
+63b212b	Yohan	Tue Jul 31 21:47:29 2018	new virtualenv
+7ec3d76	Yohan	Fri Jul 27 13:13:49 2018	test
+fd60fc0	Yohan	Fri Jul 27 13:09:41 2018	mail
+59d7401	Yohan Francis	Fri Jul 27 13:02:28 2018	Add Gitignore
+871fb59	Yohan	Fri Jul 27 12:46:38 2018	Merge branch 'master' of https://github.com/sologuy3/3162_SNA_G17
+8b95c64	Yohan	Fri Jul 27 12:45:22 2018	initial commit from last semester's work
+16f9b0d	sologuy3	Fri Jul 27 12:17:46 2018	Initial commit
