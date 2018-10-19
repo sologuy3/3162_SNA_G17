@@ -40,6 +40,10 @@
 <h1>Welcome to CompSci17_SNA&#8217;s documentation!<a class="headerlink" href="#welcome-to-compsci17-sna-s-documentation" title="Permalink to this headline">¶</a></h1>
 <p><strong>Welcome to the Documentation</strong>
 To view the Graph Module documentation, please use the &#8220;Index&#8221; or &#8220;Module Index&#8221; links below.</p>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
+</ul>
 <p><strong>API</strong>
 The Django View API currently only supports three API calls.</p>
 <p>The base URL for the API is <a class="reference external" href="http://localhost/vis/">http://localhost/vis/</a> or <a class="reference external" href="http://127.0.0.1/vis/">http://127.0.0.1/vis/</a></p>
@@ -54,18 +58,28 @@ This API call will trigger a JSON response which will be interpreted by D3 to vi
 ?type=
 Valid values:</p>
 <blockquote>
-<div>&#8216;node_count&#8217;; Returns the Node Count of the Graph
-&#8216;edge_count&#8217;; Returns the Edge Count of the Graph
-&#8216;diameter&#8217;;  Returns the Diameter of the Graph
-&#8216;minimum_average_path&#8217;;  Returns the Minimum Average Path of the Graph
-&#8216;mode_path_length&#8217;; Returns the Mode Path Length of the Graph
-&#8216;average_edges_per_node&#8217;; Returns the Average Edges Per Node in the Graph
-&#8216;discover_components&#8217;; Runs DFS to discover nodes, and returns a nested list of components.
-&#8216;acc&#8217;; Returns the average clustering coefficient of the graph
-&#8216;scc&#8217;; Returns the strongly connected components of the graph (as a nested list)
-&#8216;holes&#8217;;</div></blockquote>
+<div><p>&#8216;node_count&#8217;; Returns the Node Count of the Graph</p>
+<p>&#8216;edge_count&#8217;; Returns the Edge Count of the Graph</p>
+<p>&#8216;diameter&#8217;;  Returns the Diameter of the Graph</p>
+<p>&#8216;minimum_average_path&#8217;;  Returns the Minimum Average Path of the Graph</p>
+<p>&#8216;mode_path_length&#8217;; Returns the Mode Path Length of the Graph</p>
+<p>&#8216;average_edges_per_node&#8217;; Returns the Average Edges Per Node in the Graph</p>
+<p>&#8216;discover_components&#8217;; Runs DFS to discover nodes, and returns a nested list of components.</p>
+<p>&#8216;acc&#8217;; Returns the average clustering coefficient of the graph</p>
+<p>&#8216;scc&#8217;; Returns the strongly connected components of the graph (as a nested list)
+&#8216;holes&#8217;;</p>
+</div></blockquote>
 <p>This request will perform the algorithm given in the &#8220;type&#8221; query string, and return a formatted string response.</p>
-<p><strong>POST</strong> /algorithm</p>
+<p><strong>POST</strong> /algorithm
+<em>Query Strings</em>
+?type=  <strong>(Required)</strong>
+&#8216;spl&#8217;; This computes the shortest path length between the two nodes given. input1 is the source node and input2 is the sink.</p>
+<p>&#8216;dfs&#8217;; This runs Depth First Search with the node given in input1 as the source.</p>
+<p>&#8216;ek&#8217;; This runs Edmonds Karp to discover the maximum flow between the two nodes input1(source) and input2 (sink).</p>
+<p>&#8216;lcc&#8217;: This will compute the local clustering coefficient for the node passed as input1</p>
+<p>&#8216;mcmf&#8217;; This runs Tarjan&#8217;s algorithm to discover the Min Cut Maximum Flow between the two nodes input1(source) and input2 (sink).</p>
+<p>&amp;input1=     <strong>(Required)</strong>
+&amp;input2=     <strong>(Optional)</strong></p>
 <span class="target" id="module-graph_sna"></span><span class="target" id="module-graph_sna.graph"></span><span class="target" id="module-graph_sna.graph.graph"></span><dl class="class">
 <dt id="algorithms.GraphAlgorithms">
 <em class="property">class </em><code class="descclassname">algorithms.</code><code class="descname">GraphAlgorithms</code><a class="headerlink" href="#algorithms.GraphAlgorithms" title="Permalink to this definition">¶</a></dt>
@@ -336,11 +350,7 @@ We use Tarjan&#8217;s algorithm for this implementation
 
 </dd></dl>
 
-<span class="target" id="module-node"></span><span class="target" id="module-graph_sna.graph.node"></span><span class="target" id="module-graph_sna.graph.node"></span><ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
-</ul>
-</div>
+<span class="target" id="module-node"></span><span class="target" id="module-graph_sna.graph.node"></span><span class="target" id="module-graph_sna.graph.node"></span></div>
 
 
           </div>
