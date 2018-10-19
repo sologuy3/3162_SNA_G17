@@ -48,7 +48,7 @@ From left to right
 
 Class documentation built by Sphynx and hosted by Jekyll
 
-https://sologuy3.github.io/3162_SNA_G17/
+https://sologuy3.github.io/3162_SNA_G17/genindex.html
 
 ## Project tree
 The documentation sit under the /docs folder
