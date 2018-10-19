@@ -16,10 +16,10 @@ Welcome to CompSci17_SNA's documentation!
 .. automodule:: graph_sna.graph.graph
    :members:
 
-.. automodule:: algorithms
+.. autoclass:: algorithms.GraphAlgorithms
    :members:
 
-.. automodule:: graph_sna.graph.algorithms
+.. autoclass:: graph_sna.graph.algorithms.GraphAlgorithms
    :members:
 
 .. automodule:: node
@@ -28,9 +28,8 @@ Welcome to CompSci17_SNA's documentation!
 .. automodule:: graph_sna.graph.node
    :members:
 
-..autosummary::
-     :toctree: stubs
+.. automodule:: graph_sna.graph.node
+   :members:
 
-     Graph
 
 * :ref:`genindex`

@@ -280,8 +280,78 @@ For internal neighbor retrieval use self._neighbors
 </dd></dl>
 
 </div>
-<div class="section" id="graph-testnode-module">
-<h2>graph.testNode module<a class="headerlink" href="#graph-testnode-module" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="module-graph.testNode">
+<span id="graph-testnode-module"></span><h2>graph.testNode module<a class="headerlink" href="#module-graph.testNode" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="graph.testNode.NodeTest">
+<em class="property">class </em><code class="descclassname">graph.testNode.</code><code class="descname">NodeTest</code><span class="sig-paren">(</span><em>methodName='runTest'</em><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">unittest.case.TestCase</span></code></p>
+<dl class="method">
+<dt id="graph.testNode.NodeTest.setUp">
+<code class="descname">setUp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.setUp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call before every test case.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.testNode.NodeTest.tearDown">
+<code class="descname">tearDown</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.tearDown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call after every test case.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.testNode.NodeTest.test_add_neighbor">
+<code class="descname">test_add_neighbor</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.test_add_neighbor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests adding a neighbor using the add_neighbor method.
+The expected response is that an added node is returned via the get_neighbors() method.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.testNode.NodeTest.test_add_neighbor_at_init">
+<code class="descname">test_add_neighbor_at_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.test_add_neighbor_at_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for passing a one neighbor as an argument when initializing a node.
+Fails if added neighbor:
+- Is not returned in node.get_neighbors()
+- Has the new node added to its neighbor list automatically (i.e. non-directed edges)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.testNode.NodeTest.test_add_neighbors">
+<code class="descname">test_add_neighbors</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.test_add_neighbors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test adding multiple neighbors to the node via add_neighbor()
+Includes multiple stress tests and attempts adding different types of sequences.
+:return:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.testNode.NodeTest.test_add_neighbors_at_init">
+<code class="descname">test_add_neighbors_at_init</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.test_add_neighbors_at_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test for passing multiple neighbors at initialising a Node.
+This includes a 500k node stress test.
+The test involves passing a large number of nodes and making sure the contents returned
+by the get_neighbors method is the same as what was passed at init.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.testNode.NodeTest.test_neighbor_already_added">
+<code class="descname">test_neighbor_already_added</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.test_neighbor_already_added" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests situations where there is an attempt to add an existing neighbor.
+The expected handling of this is that there is no change to the neighbors as a Set is being used.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="graph.testNode.NodeTest.test_remove_exceptions">
+<code class="descname">test_remove_exceptions</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.test_remove_exceptions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="graph.testNode.NodeTest.test_remove_node">
+<code class="descname">test_remove_node</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#graph.testNode.NodeTest.test_remove_node" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tests the removal of nodes</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="module-graph">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-graph" title="Permalink to this headline">¶</a></h2>
@@ -300,7 +370,7 @@ For internal neighbor retrieval use self._neighbors
 <li><a class="reference internal" href="#submodules">Submodules</a></li>
 <li><a class="reference internal" href="#module-graph.graph">graph.graph module</a></li>
 <li><a class="reference internal" href="#module-graph.node">graph.node module</a></li>
-<li><a class="reference internal" href="#graph-testnode-module">graph.testNode module</a></li>
+<li><a class="reference internal" href="#module-graph.testNode">graph.testNode module</a></li>
 <li><a class="reference internal" href="#module-graph">Module contents</a></li>
 </ul>
 </li>
