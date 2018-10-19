@@ -52,10 +52,10 @@ This API call will load the given dataset into the view. This is done by
 1. Loading the given dataset into the graph module on the server side
 2. Reloading the web view</p>
 <p><strong>GET</strong> /load_graph.json
-This API call will trigger a JSON response which will be interpreted by D3 to visualise the graph. The server will pick up the currently loaded graph, use the graph.dump_graph() method to generate a JSON file in a format that D3 can read, and pass this in its response to the GET request.</p>
+* This API call will trigger a JSON response which will be interpreted by D3 to visualise the graph. The server will pick up the currently loaded graph, use the graph.dump_graph() method to generate a JSON file in a format that D3 can read, and pass this in its response to the GET request.</p>
 <p><strong>GET</strong> /algorithm
-<em>Query Strings</em> <strong>(Required)</strong>
-?type=
+<em>Query Strings</em> <strong>(Required)</strong></p>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a>?type=
 Valid values:</p>
 <blockquote>
 <div><p>&#8216;node_count&#8217;; Returns the Node Count of the Graph</p>
@@ -69,17 +69,20 @@ Valid values:</p>
 <p>&#8216;scc&#8217;; Returns the strongly connected components of the graph (as a nested list)
 &#8216;holes&#8217;;</p>
 </div></blockquote>
-<p>This request will perform the algorithm given in the &#8220;type&#8221; query string, and return a formatted string response.</p>
+<p>``
+* This request will perform the algorithm given in the &#8220;type&#8221; query string, and return a formatted string response.</p>
 <p><strong>POST</strong> /algorithm
 <em>Query Strings</em>
-?type=  <strong>(Required)</strong>
+<a href="#id3"><span class="problematic" id="id4">``</span></a>?type=  <strong>(Required)</strong>
 &#8216;spl&#8217;; This computes the shortest path length between the two nodes given. input1 is the source node and input2 is the sink.</p>
 <p>&#8216;dfs&#8217;; This runs Depth First Search with the node given in input1 as the source.</p>
 <p>&#8216;ek&#8217;; This runs Edmonds Karp to discover the maximum flow between the two nodes input1(source) and input2 (sink).</p>
 <p>&#8216;lcc&#8217;: This will compute the local clustering coefficient for the node passed as input1</p>
-<p>&#8216;mcmf&#8217;; This runs Tarjan&#8217;s algorithm to discover the Min Cut Maximum Flow between the two nodes input1(source) and input2 (sink).</p>
-<p>&amp;input1=     <strong>(Required)</strong>
-&amp;input2=     <strong>(Optional)</strong></p>
+<p>&#8216;mcmf&#8217;; This runs Tarjan&#8217;s algorithm to discover the Min Cut Maximum Flow between the two nodes input1(source) and input2 (sink).
+``</p>
+<p><a href="#id5"><span class="problematic" id="id6">``</span></a>&amp;input1=     <strong>(Required)</strong>
+&amp;input2=     <strong>(Optional)</strong>
+``</p>
 <span class="target" id="module-graph_sna"></span><span class="target" id="module-graph_sna.graph"></span><span class="target" id="module-graph_sna.graph.graph"></span><dl class="class">
 <dt id="algorithms.GraphAlgorithms">
 <em class="property">class </em><code class="descclassname">algorithms.</code><code class="descname">GraphAlgorithms</code><a class="headerlink" href="#algorithms.GraphAlgorithms" title="Permalink to this definition">¶</a></dt>

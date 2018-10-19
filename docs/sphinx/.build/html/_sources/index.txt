@@ -24,11 +24,12 @@ This API call will load the given dataset into the view. This is done by
 2. Reloading the web view
 
 **GET** /load_graph.json
-This API call will trigger a JSON response which will be interpreted by D3 to visualise the graph. The server will pick up the currently loaded graph, use the graph.dump_graph() method to generate a JSON file in a format that D3 can read, and pass this in its response to the GET request.
+* This API call will trigger a JSON response which will be interpreted by D3 to visualise the graph. The server will pick up the currently loaded graph, use the graph.dump_graph() method to generate a JSON file in a format that D3 can read, and pass this in its response to the GET request.
 
 **GET** /algorithm
 *Query Strings* **(Required)**
-?type=
+
+``?type=
 Valid values:
    'node_count'; Returns the Node Count of the Graph
 
@@ -48,13 +49,13 @@ Valid values:
 
    'scc'; Returns the strongly connected components of the graph (as a nested list)
    'holes';
-
-This request will perform the algorithm given in the "type" query string, and return a formatted string response.
+``
+* This request will perform the algorithm given in the "type" query string, and return a formatted string response.
 
 
 **POST** /algorithm
 *Query Strings*
-?type=  **(Required)**
+``?type=  **(Required)**
 'spl'; This computes the shortest path length between the two nodes given. input1 is the source node and input2 is the sink.
 
 'dfs'; This runs Depth First Search with the node given in input1 as the source.
@@ -64,13 +65,11 @@ This request will perform the algorithm given in the "type" query string, and re
 'lcc': This will compute the local clustering coefficient for the node passed as input1
 
 'mcmf'; This runs Tarjan's algorithm to discover the Min Cut Maximum Flow between the two nodes input1(source) and input2 (sink).
+``
 
-
-
-&input1=     **(Required)**
+``&input1=     **(Required)**
 &input2=     **(Optional)**
-
-
+``
 
 
 .. automodule:: graph_sna
