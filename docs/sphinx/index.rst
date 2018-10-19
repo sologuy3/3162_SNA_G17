@@ -6,11 +6,6 @@
 Welcome to CompSci17_SNA's documentation!
 =========================================
 
-Contents:
-
-.. toctree::
-   :maxdepth: 2
-
 
 **Welcome to the Documentation**
 To view the Graph Module documentation, please use the "Index" or "Module Index" links below.
@@ -47,8 +42,6 @@ This request will perform the algorithm given in the "type" query string, and re
 
 
 **POST** /algorithm
-
-
 
 
 
