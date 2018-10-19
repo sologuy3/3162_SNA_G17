@@ -36,9 +36,42 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="module-graph_sna">
-<span id="welcome-to-compsci17-sna-s-documentation"></span><h1>Welcome to CompSci17_SNA&#8217;s documentation!<a class="headerlink" href="#module-graph_sna" title="Permalink to this headline">¶</a></h1>
-<span class="target" id="module-graph_sna.graph"></span><span class="target" id="module-graph_sna.graph.graph"></span><dl class="class">
+  <div class="section" id="welcome-to-compsci17-sna-s-documentation">
+<h1>Welcome to CompSci17_SNA&#8217;s documentation!<a class="headerlink" href="#welcome-to-compsci17-sna-s-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+<p><strong>Welcome to the Documentation</strong>
+To view the Graph Module documentation, please use the &#8220;Index&#8221; or &#8220;Module Index&#8221; links below.</p>
+<p><strong>API</strong>
+The Django View API currently only supports three API calls.</p>
+<p>The base URL for the API is <a class="reference external" href="http://localhost/vis/">http://localhost/vis/</a> or <a class="reference external" href="http://127.0.0.1/vis/">http://127.0.0.1/vis/</a></p>
+<p><strong>GET</strong> /reddit <em>or</em> /slashdot <em>or</em> /enron <em>or</em> /reload
+This API call will load the given dataset into the view. This is done by
+1. Loading the given dataset into the graph module on the server side
+2. Reloading the web view</p>
+<p><strong>GET</strong> /load_graph.json
+This API call will trigger a JSON response which will be interpreted by D3 to visualise the graph. The server will pick up the currently loaded graph, use the graph.dump_graph() method to generate a JSON file in a format that D3 can read, and pass this in its response to the GET request.</p>
+<p><strong>GET</strong> /algorithm
+<em>Query Strings</em> <strong>(Required)</strong>
+?type=
+Valid values:</p>
+<blockquote>
+<div>&#8216;node_count&#8217;; Returns the Node Count of the Graph
+&#8216;edge_count&#8217;; Returns the Edge Count of the Graph
+&#8216;diameter&#8217;;  Returns the Diameter of the Graph
+&#8216;minimum_average_path&#8217;;  Returns the Minimum Average Path of the Graph
+&#8216;mode_path_length&#8217;; Returns the Mode Path Length of the Graph
+&#8216;average_edges_per_node&#8217;; Returns the Average Edges Per Node in the Graph
+&#8216;discover_components&#8217;; Runs DFS to discover nodes, and returns a nested list of components.
+&#8216;acc&#8217;; Returns the average clustering coefficient of the graph
+&#8216;scc&#8217;; Returns the strongly connected components of the graph (as a nested list)
+&#8216;holes&#8217;;</div></blockquote>
+<p>This request will perform the algorithm given in the &#8220;type&#8221; query string, and return a formatted string response.</p>
+<p><strong>POST</strong> /algorithm</p>
+<span class="target" id="module-graph_sna"></span><span class="target" id="module-graph_sna.graph"></span><span class="target" id="module-graph_sna.graph.graph"></span><dl class="class">
 <dt id="algorithms.GraphAlgorithms">
 <em class="property">class </em><code class="descclassname">algorithms.</code><code class="descname">GraphAlgorithms</code><a class="headerlink" href="#algorithms.GraphAlgorithms" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
@@ -310,6 +343,7 @@ We use Tarjan&#8217;s algorithm for this implementation
 
 <span class="target" id="module-node"></span><span class="target" id="module-graph_sna.graph.node"></span><span class="target" id="module-graph_sna.graph.node"></span><ul class="simple">
 <li><a class="reference internal" href="genindex.html"><span>Index</span></a></li>
+<li><a class="reference internal" href="py-modindex.html"><span>Module Index</span></a></li>
 </ul>
 </div>
 
