@@ -113,7 +113,7 @@ def run_algorithm(request):
 
             if alg == 'discover_components':
                 print('running '+alg)
-                response_string = str()
+                response_string = str(algrunner.discover_components(graph))
 
             if alg == 'acc':
                 print('running '+alg)
