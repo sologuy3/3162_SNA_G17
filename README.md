@@ -12,7 +12,7 @@ Run the run_linx.sh script.
 
 
 This batch file will activate the Python 3.6 Virtual Environment and open the local web page using your default browser. It may take a few moments for the web server to initialize, if the page does not automatically initialize, reload the page after 10 seconds. 
-If you wish to use a different browser, the main page is at http://127.0.0.1/vis/
+If you wish to use a different browser, the main page is at http://127.0.0.1:8000/vis/
 
 
 ## Running Tests
